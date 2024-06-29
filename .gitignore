@@ -1,0 +1,54 @@
+# .gitignore for Terraform
+
+.terraform
+
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+
+# Terraform variable files containing sensitive data
+*.tfvars
+*.tfvars.json
+
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# SSH key files
+*.pem
+*.key
+
+# Sensitive files
+*.p12
+*.jks
+*.keyfile
+
+# Terraform plan files
+*.tfplan
+
+# Command history files
+.terraformrc
+.terraform.rc
+
+# Lock files
+*.lock.hcl
+
+# Ignore temporary files created by text editors
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Ignore MacOS system files
+.DS_Store
+
+# Ignore Windows system files
+Thumbs.db

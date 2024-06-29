@@ -1,0 +1,10 @@
+all:
+  hosts:
+    localhost:
+  vars:
+    acr_name: "{{ lookup('env', 'ACR_NAME') }}"
+    resource_group: "{{ lookup('env', 'RESOURCE_GROUP') }}"
+    subscription_id: "{{ lookup('env', 'SUBSCRIPTION_ID') }}"
+    client_id: "{{ lookup('env', 'CLIENT_ID') }}"
+    client_secret: "{{ lookup('env', 'CLIENT_SECRET') }}"
+    tenant_id: "{{ lookup('env', 'TENANT_ID') }}"

@@ -1,0 +1,23 @@
+    
+- name: Deploy Nginx Docker image to Azure Container Registry
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Login to Azure CLI
+      ansible.builtin.command: >
+        az login --service-principal
+        --user "{{ client_id }}"
+        --password "{{ client_secret }}"
+        --tenant "{{ tenant_id }}"
+
+    - name: Set Azure subscription
+      ansible.builtin.command: >
+        az account set --subscription "{{ subscription_id }}"
+
+    - name: Copy Nginx Docker image to Azure Container Registry
+      ansible.builtin.command: >
+        skopeo copy
+        docker://nginx:latest
+        docker://{{ acr_name }}.azurecr.io/nginx:latest
+        --dest-creds "{{ acr_name }}:{{ client_secret }}"
+        --src-creds docker.io

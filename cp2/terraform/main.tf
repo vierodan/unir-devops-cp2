@@ -1,23 +1,20 @@
 # main.tf
 
-terraform{
+terraform {
+  required_version = "~>1.9.0"
   required_providers {
-    azurerm ={
+    azurerm = {
       source = "hashicorp/azurerm"
-      version = "~> 3.0.2"
+      version = ">=3.0.2"
     }
   }
-  required_version = ">= 1.1.0, < 2.0.0"
 }
+
 provider "azurerm" {
-  features {}
+    features {}
+    skip_provider_registration = true
 }
 
 module "resources" {
   source = "./modules/resources"
-
-  // Optional: You can pass variables to the module if needed
-  // Example:
-  // vnet_name   = "exampleVNet"
-  // subnet_name = "subnet1"
 }

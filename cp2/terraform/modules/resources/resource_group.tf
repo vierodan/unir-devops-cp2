@@ -1,8 +1,8 @@
 # resource_group.tf
 
-resource "azurerm_resource_group" "rg" {
-  name     = var.resource_group_name
-  location = var.azure_location
+resource "azure_resource_group" "rg" {
+  name     = var.azure_resource_group_value
+  location = var.azure_location_value
 
   tags = {
     environment = "development"

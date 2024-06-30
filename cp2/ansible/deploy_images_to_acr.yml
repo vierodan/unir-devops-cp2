@@ -14,6 +14,8 @@
       ansible.builtin.command: >
         az account set --subscription "{{ lookup('env', 'SUBSCRIPTION_ID') }}"
 
+
+
     - name: Pull Nginx Docker image locally using Podman
       ansible.builtin.command: >
         podman pull docker://nginx:latest
@@ -21,6 +23,8 @@
     - name: Tag the Nginx Docker image for Azure Container Registry
       ansible.builtin.command: >
         podman tag nginx:latest {{ lookup('env', 'ACR_NAME') }}.azurecr.io/nginx:latest
+
+
 
     - name: Get ACR login access token
       ansible.builtin.command: >
@@ -45,6 +49,8 @@
       fail:
         msg: "Failed to log in to Azure Container Registry"
       when: login_result.rc != 0
+
+      
 
     - name: Push Nginx Docker image to Azure Container Registry
       ansible.builtin.command: >

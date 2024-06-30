@@ -1,4 +1,4 @@
-# resource_group/resource_group.tf
+# resource_group.tf
 
 resource "azurerm_resource_group" "rg" {
   name     = var.resource_group_name

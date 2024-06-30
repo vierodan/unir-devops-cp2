@@ -1,3 +1,5 @@
+# main.tf
+
 terraform{
   required_providers {
     azurerm ={
@@ -11,7 +13,6 @@ provider "azurerm" {
   features {}
 }
 
-// Module resources to call the network module
 module "resources" {
   source = "./modules/resources"
 

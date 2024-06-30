@@ -1,4 +1,4 @@
-// outputs.tf
+# outputs.tf
 
 output "acr_login_server" {
     description = "value"

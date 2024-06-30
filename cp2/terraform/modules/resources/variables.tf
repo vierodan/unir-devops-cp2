@@ -1,4 +1,4 @@
-// variables.tf
+# variables.tf
 
 variable "azure_location" {
   description = "The Azure region where resources will be deployed for CP2"

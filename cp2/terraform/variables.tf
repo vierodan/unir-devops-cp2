@@ -1,22 +1,20 @@
 # variables.tf
 
-
-# --- AZURE REGION ---
+// --- AZURE REGION ---
 variable "azure_location_name_value" {
   description = "The Azure region where resources will be deployed for CP2"
   type        = string
   default     = "West Europe"
 }
 
-
-# --- RESOURCE GROUPS ---
+// --- RESOURCE GROUPS ---
 variable "azure_resource_group_name_value" {
   description = "Name of the Azure Resource Group for CP2"
   type        = string
   default     = "avrCP2rg"
 }
 
-# --- AZURE CONTAINER REGISTRY ---
+// --- AZURE CONTAINER REGISTRY ---
 variable "azure_container_registry_name_value" {
   description = "Name of the Azure Container Registry (ACR) for CP2"
   type        = string

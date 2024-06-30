@@ -1,4 +1,4 @@
-# virtual_machine.terraform {
+# virtual_machine.tf
   
 resource "azure_linux_virtual_machine" "alvm" {
     name                = "example-vm"

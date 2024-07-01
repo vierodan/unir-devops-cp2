@@ -1,10 +1,10 @@
-# main.tf
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "> 3.0"
-    }
+resource "azure_resource_group" "rg" {
+  name     = var.azure_resource_group_value
+  location = var.azure_location_value
+
+  tags = {
+    environment = "development"
+    project     = "cp2"
   }
 }
 

@@ -5,6 +5,9 @@ resource "azurerm_virtual_network" "avn" {
     address_space       = ["10.0.0.0/16"]
     location            = var.azurerm_location_name_value
     resource_group_name = var.azurerm_resource_group_name_value
+    depends_on = [ 
+        azurerm_resource_group.arg 
+    ]
 
     tags = {
         environment = "development"
@@ -17,7 +20,10 @@ resource "azurerm_subnet" "asn" {
     resource_group_name  = var.azurerm_resource_group_name_value
     virtual_network_name = var.azurerm_virtual_network_name_value
     address_prefixes     = ["10.0.1.0/24"]
-    depends_on = [ azurerm_virtual_network.avn ]
+    depends_on = [ 
+        azurerm_resource_group.arg,
+        azurerm_virtual_network.avn 
+    ]
 }
 
 resource "azurerm_public_ip" "apip" {
@@ -25,6 +31,9 @@ resource "azurerm_public_ip" "apip" {
     location            = var.azurerm_location_name_value
     resource_group_name = var.azurerm_resource_group_name_value
     allocation_method   = "Dynamic"
+    depends_on = [ 
+        azurerm_resource_group.arg 
+    ]
 
     tags = {
         environment = "development"
@@ -36,7 +45,11 @@ resource "azurerm_network_interface" "ani" {
     name                = var.azurerm_network_interface_name_value
     location            = var.azurerm_location_name_value
     resource_group_name = var.azurerm_resource_group_name_value
-    depends_on = [ azurerm_subnet.asn, azurerm_public_ip.apip ]
+    depends_on = [ 
+        azurerm_resource_group.arg,
+        azurerm_subnet.asn, 
+        azurerm_public_ip.apip 
+    ]
 
     ip_configuration {
         name                          = "internal"
@@ -55,6 +68,9 @@ resource "azurerm_network_security_group" "ansg" {
     name                = var.azurerm_network_security_group_name_value
     location            = var.azurerm_location_name_value
     resource_group_name = var.azurerm_resource_group_name_value
+    depends_on = [ 
+        azurerm_resource_group.arg 
+    ]
 
     tags = {
         environment = "development"
@@ -75,8 +91,12 @@ resource "azurerm_network_security_group" "ansg" {
 }
 
 resource "azurerm_network_interface_security_group_association" "anisga" {
-  network_interface_id      = azurerm_network_interface.ani.id
-  network_security_group_id = azurerm_network_security_group.ansg.id
-  depends_on = [ azurerm_network_interface.ani, azurerm_network_security_group.ansg ]
+    network_interface_id      = azurerm_network_interface.ani.id
+    network_security_group_id = azurerm_network_security_group.ansg.id
+    depends_on = [ 
+        azurerm_resource_group.arg,
+        azurerm_network_interface.ani, 
+        azurerm_network_security_group.ansg 
+    ]
 }
 

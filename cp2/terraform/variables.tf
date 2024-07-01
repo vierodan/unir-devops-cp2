@@ -11,14 +11,14 @@ variable "azurerm_location_name_value" {
 variable "azurerm_resource_group_name_value" {
   description = "Name of the Azure Resource Group for CP2"
   type        = string
-  default     = "avr_arg"
+  default     = "avrarg"
 }
 
 // --- AZURE CONTAINER REGISTRY ---
 variable "azurerm_container_registry_name_value" {
   description = "Name of the Azure Container Registry (ACR) for CP2"
   type        = string
-  default     = "avr_acr"
+  default     = "avracr"
 }
 
 variable "azurerm_sku_basic_name_value" {
@@ -31,29 +31,29 @@ variable "azurerm_sku_basic_name_value" {
 variable "azurerm_virtual_network_name_value" {
   description = "Name of Azure Virtual Network for CP2"
   type = string
-  default = "avr_avn"
+  default = "avravn"
 }
 
 variable "azurerm_subnet_name_value" {
   description = "Name of Azure Subnet for CP2"
   type = string
-  default = "avr_asn"
+  default = "avrasn"
 }
 
 variable "azurerm_public_ip_name_value" {
   description = "Name of Azure IP public for CP2"
   type = string
-  default = "avr_apip"
+  default = "avrapip"
 }
 
 variable "azurerm_network_interface_name_value" {
   description = "Name of Azure Network Interface for CP2"
   type = string
-  default = "avr_ani"
+  default = "avrani"
 }
 
 variable "azurerm_network_security_group_name_value" {
   description = "Name of Azure Network Security Group for CP2"
   type = string
-  default = "avr_ansg"
+  default = "avransg"
 }

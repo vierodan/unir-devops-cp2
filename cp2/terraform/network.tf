@@ -6,7 +6,8 @@ resource "azurerm_virtual_network" "avn" {
     location            = var.azurerm_location_name_value
     resource_group_name = var.azurerm_resource_group_name_value
     depends_on = [ 
-        azurerm_resource_group.arg 
+        azurerm_resource_group.arg,
+        azurerm_availability_set.aas
     ]
 
     tags = {
@@ -22,6 +23,7 @@ resource "azurerm_subnet" "asn" {
     address_prefixes     = ["10.0.1.0/24"]
     depends_on = [ 
         azurerm_resource_group.arg,
+        azurerm_availability_set.aas,
         azurerm_virtual_network.avn 
     ]
 }
@@ -32,7 +34,8 @@ resource "azurerm_public_ip" "apip" {
     resource_group_name = var.azurerm_resource_group_name_value
     allocation_method   = "Dynamic"
     depends_on = [ 
-        azurerm_resource_group.arg 
+        azurerm_resource_group.arg,
+        azurerm_availability_set.aas 
     ]
 
     tags = {
@@ -47,6 +50,7 @@ resource "azurerm_network_interface" "ani" {
     resource_group_name = var.azurerm_resource_group_name_value
     depends_on = [ 
         azurerm_resource_group.arg,
+        azurerm_availability_set.aas,
         azurerm_subnet.asn, 
         azurerm_public_ip.apip 
     ]
@@ -69,7 +73,8 @@ resource "azurerm_network_security_group" "ansg" {
     location            = var.azurerm_location_name_value
     resource_group_name = var.azurerm_resource_group_name_value
     depends_on = [ 
-        azurerm_resource_group.arg 
+        azurerm_resource_group.arg,
+        azurerm_availability_set.aas 
     ]
 
     tags = {
@@ -95,6 +100,7 @@ resource "azurerm_network_interface_security_group_association" "anisga" {
     network_security_group_id = azurerm_network_security_group.ansg.id
     depends_on = [ 
         azurerm_resource_group.arg,
+        azurerm_availability_set.aas,
         azurerm_network_interface.ani, 
         azurerm_network_security_group.ansg 
     ]

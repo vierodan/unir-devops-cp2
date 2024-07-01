@@ -1,7 +1,7 @@
 
 # main.tf
 
-resource "azurerm_resource_group" "rg" {
+resource "azurerm_resource_group" "arg" {
   name     = var.azurerm_resource_group_name_value
   location = var.azurerm_location_name_value
 

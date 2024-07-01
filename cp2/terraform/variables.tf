@@ -26,3 +26,34 @@ variable "azurerm_sku_basic_name_value" {
   type        = string
   default     = "Basic"
 }
+
+// --- AZURE NETWORK ---
+variable "azurerm_virtual_network_name_value" {
+  description = "Name of Azure Virtual Network for CP2"
+  type = string
+  default = "avrCP2avn"
+}
+
+variable "azurerm_subnet_name_value" {
+  description = "Name of Azure Subnet for CP2"
+  type = string
+  default = "avrCP2asn"
+}
+
+variable "azurerm_public_ip_name_value" {
+  description = "Name of Azure IP public for CP2"
+  type = string
+  default = "avrCP2apip"
+}
+
+variable "azurerm_network_interface_name_value" {
+  description = "Name of Azure Network Interface for CP2"
+  type = string
+  default = "avrCP2ani"
+}
+
+variable "azurerm_network_security_group_name_value" {
+  description = "Name of Azure Network Security Group for CP2"
+  type = string
+  default = "avrCP2ansg"
+}

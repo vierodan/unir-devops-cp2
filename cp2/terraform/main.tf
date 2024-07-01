@@ -1,6 +1,25 @@
-resource "azure_resource_group" "rg" {
-  name     = var.azure_resource_group_value
-  location = var.azure_location_value
+
+provider "azurerm" {
+  features {}
+}
+
+resource "azurerm_resource_group" "rg" {
+  name     = var.azurerm_resource_group_name_value
+  location = var.azurerm_location_name_value
+
+  tags = {
+    environment = "development"
+    project     = "cp2"
+  }
+}
+
+resource "azurerm_container_registry" "acr" {
+  name                = var.azurerm_container_registry_name_value
+  resource_group_name = var.azurerm_resource_group_name_value
+  location            = var.azurerm_location_name_value
+  sku                 = var.azurerm_sku_basic_name_value # Available SKUs: Basic, Standard, Premium
+
+  admin_enabled = true # Set to false if you do not want admin user enabled
 
   tags = {
     environment = "development"

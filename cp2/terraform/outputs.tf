@@ -1,20 +1,17 @@
 # outputs.tf
 
-output "azure_acr_login_server" {
+output "azurerm_acr_login_server" {
     description = "Login Server for ACR"
-    value = azure_container_registry.acr.login_server
-    depends_on = [ azure_container_registry.acr ]
+    value = azurerm_container_registry.acr.login_server
 }
 
-output "azure_acr_admin_username" {
+output "azurerm_acr_admin_username" {
     description = "Admin User for ACR"
-    value = azure_container_registry.acr.admin_username
-    depends_on = [ azure_container_registry.acr ]
+    value = azurerm_container_registry.acr.admin_username
 }
 
-output "azure_acr_admin_password" {
+output "azurerm_acr_admin_password" {
     description = "Admin Password for ACR"
-    value     = azure_container_registry.acr.admin_password
-    depends_on = [ azure_container_registry.acr ]
+    value     = azurerm_container_registry.acr.admin_password
     sensitive = true
 }

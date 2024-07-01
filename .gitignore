@@ -42,9 +42,6 @@ override.tf.json
 .terraformrc
 .terraform.rc
 
-# Lock files
-*.lock.hcl
-
 # Ignore temporary files created by text editors
 *.swp
 *.swo

@@ -70,3 +70,28 @@ variable "azurerm_virtual_machine_linux_name_value" {
   type = string
   default = "avrcp2vml"
 }
+
+// --- AZURE KUBERNETES CLUSTER ---
+variable "azurerm_aks_cluster_name_value" {
+  description = "The name of the AKS cluster."
+  type        = string
+  default     = "avrcp2aks"
+}
+
+variable "azurerm_aks_version_value" {
+  description = "The Kubernetes version to use for the AKS cluster."
+  type        = string
+  default     = "1.21.2"
+}
+
+variable "azurerm_aks_nodes_count_value" {
+  description = "The number of nodes in the default node pool."
+  type        = number
+  default     = 3
+}
+
+variable "azurerm_aks_node_vm_size_value" {
+  description = "The size of the Virtual Machine for the default node pool."
+  type        = string
+  default     = "Standard_DS2_v2"
+}

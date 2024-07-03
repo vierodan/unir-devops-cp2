@@ -30,3 +30,8 @@ output "admin_username" {
     description = "The admin username for the virtual machine"
     value       = azurerm_linux_virtual_machine.avml.admin_username
 }
+
+output "kube_config" {
+  value     = azurerm_kubernetes_cluster.aks.kube_config_raw
+  sensitive = true
+}

@@ -81,17 +81,17 @@ variable "azurerm_aks_cluster_name_value" {
 variable "azurerm_aks_version_value" {
   description = "The Kubernetes version to use for the AKS cluster."
   type        = string
-  default     = "1.21.2"
+  default     = "1.28.9"
 }
 
 variable "azurerm_aks_nodes_count_value" {
   description = "The number of nodes in the default node pool."
   type        = number
-  default     = 3
+  default     = 1
 }
 
 variable "azurerm_aks_node_vm_size_value" {
   description = "The size of the Virtual Machine for the default node pool."
   type        = string
-  default     = "Standard_DS2_v2"
+  default     = "Standard_B2s"
 }

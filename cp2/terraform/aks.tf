@@ -1,7 +1,7 @@
 
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = var.azurerm_aks_cluster_name_value
-  location            = var.azurerm_location_name_value
+  location            = var.azurerm_aks_location_name_value
   resource_group_name = var.azurerm_resource_group_name_value
   kubernetes_version  = var.azurerm_aks_version_value
   role_based_access_control_enabled = true
@@ -23,5 +23,10 @@ resource "azurerm_kubernetes_cluster" "aks" {
   network_profile {
     network_plugin = "azure"
     load_balancer_sku = "basic"
+  }
+
+  tags = {
+      environment = "development"
+      project     = "cp2"
   }
 }

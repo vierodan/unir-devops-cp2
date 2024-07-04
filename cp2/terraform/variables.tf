@@ -7,6 +7,12 @@ variable "azurerm_location_name_value" {
   default     = "West Europe"
 }
 
+variable "azurerm_aks_location_name_value" {
+  description = "The Azure region where aks resources will be deployed for CP2 in a free tier"
+  type        = string
+  default     = "UK West"
+}
+
 // --- RESOURCE GROUPS ---
 variable "azurerm_resource_group_name_value" {
   description = "Name of the Azure Resource Group for CP2"
@@ -93,5 +99,5 @@ variable "azurerm_aks_nodes_count_value" {
 variable "azurerm_aks_node_vm_size_value" {
   description = "The size of the Virtual Machine for the default node pool."
   type        = string
-  default     = "Standard_B1ms"
+  default     = "Standard_B2s" # almost 2 cores and 2GB
 }

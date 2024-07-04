@@ -6,6 +6,9 @@ resource "azurerm_kubernetes_cluster" "aks" {
   kubernetes_version  = var.azurerm_aks_version_value
   role_based_access_control_enabled = true
   dns_prefix          = "avrcp2aks"
+  depends_on = [ 
+    azurerm_resource_group.arg 
+  ]
 
   default_node_pool {
     name       = "default"

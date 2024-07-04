@@ -7,7 +7,7 @@ tfplan
 # Local .terraform directories
 **/.terraform/*
 
-**/deploy_images_to_acr.sh
+**/launch_playbooks.sh
 
 # .tfstate files
 *.tfstate

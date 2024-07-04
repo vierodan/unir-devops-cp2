@@ -23,7 +23,7 @@ resource "azurerm_linux_virtual_machine" "avml" {
     os_disk {
         name              = "linux-os-disk"
         caching           = "ReadWrite"
-        storage_account_type = "Standard_LRS"
+        storage_account_type = "Standard_B2s"
     }
 
     source_image_reference {

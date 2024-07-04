@@ -87,11 +87,11 @@ variable "azurerm_aks_version_value" {
 variable "azurerm_aks_nodes_count_value" {
   description = "The number of nodes in the default node pool."
   type        = number
-  default     = 1
+  default     = 1 # for free tier ths cluster only can have one node
 }
 
 variable "azurerm_aks_node_vm_size_value" {
   description = "The size of the Virtual Machine for the default node pool."
   type        = string
-  default     = "Standard_B2s"
+  default     = "Standard_B1ms"
 }

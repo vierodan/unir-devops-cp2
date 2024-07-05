@@ -1,0 +1,28 @@
+---
+- name: Install Podman on Azure VM
+  hosts: webserver
+  become: yes
+  tasks:
+    - name: Ensure dependencies are installed
+      apt:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+          - software-properties-common
+          - curl
+          - wget
+
+    - name: Add Podman PPA
+      apt_repository:
+        repo: ppa:projectatomic/ppa
+        state: present
+
+    - name: Update the apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Podman
+      apt:
+        name: podman
+        state: present

@@ -40,3 +40,4 @@ resource "azurerm_linux_virtual_machine" "avml" {
         project     = "cp2"
     }
 }
+

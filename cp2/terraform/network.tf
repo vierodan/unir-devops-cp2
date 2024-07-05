@@ -32,7 +32,7 @@ resource "azurerm_public_ip" "apip" {
     name                = var.azurerm_public_ip_name_value
     location            = var.azurerm_location_name_value
     resource_group_name = var.azurerm_resource_group_name_value
-    allocation_method   = "Dynamic"
+    allocation_method   = "Static"
     depends_on = [ 
         azurerm_resource_group.arg,
         azurerm_availability_set.aas 
@@ -104,5 +104,14 @@ resource "azurerm_network_interface_security_group_association" "anisga" {
         azurerm_network_interface.ani, 
         azurerm_network_security_group.ansg 
     ]
+}
+
+resource "local_file" "ansible_inventory" {
+    depends_on = [ azurerm_public_ip.apip ]
+    content  = <<-EOT
+    [webserver]
+    ${azurerm_public_ip.apip.ip_address} ansible_user=adminuser
+    EOT
+    filename = "../ansible/ansible_vm_ip_inventory.ini"
 }
 

@@ -1,5 +1,5 @@
 
-resource "azurerm_kubernetes_cluster" "aks" {
+/* resource "azurerm_kubernetes_cluster" "aks" {
   name                = var.azurerm_aks_cluster_name_value
   location            = var.azurerm_aks_location_name_value
   resource_group_name = var.azurerm_resource_group_name_value
@@ -29,4 +29,4 @@ resource "azurerm_kubernetes_cluster" "aks" {
       environment = "development"
       project     = "cp2"
   }
-}
+} */

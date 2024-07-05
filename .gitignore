@@ -8,6 +8,7 @@ tfplan
 **/.terraform/*
 
 **/launch_playbooks.sh
+**/*inventory.ini
 
 # .tfstate files
 *.tfstate

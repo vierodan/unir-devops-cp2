@@ -9,6 +9,7 @@ tfplan
 
 **/launch_playbooks.sh
 **/*inventory.ini
+**/*pwd*
 
 # .tfstate files
 *.tfstate

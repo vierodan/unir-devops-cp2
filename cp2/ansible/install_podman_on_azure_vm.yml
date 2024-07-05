@@ -1,6 +1,8 @@
 ---
 - name: Install Podman on Azure VM
   hosts: webserver
+  vars_files:
+    - vault.yml
   become: yes
   tasks:
     - name: Ensure dependencies are installed

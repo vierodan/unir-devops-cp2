@@ -1,9 +1,12 @@
 ---
 - name: Install Podman on Azure VM
   hosts: webserver
-  vars_files:
-    - vault.yml
-  become: yes
+  gather_facts: yes
+  remote_user: adminuser
+  vars:
+    ansible_ssh_private_key_file: '~/.ssh/id_rsa_azure'
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+
   tasks:
     - name: Update apt cache
       ansible.builtin.apt:

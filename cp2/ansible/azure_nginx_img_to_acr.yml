@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: no
   vars:
-    back_source_image: docker://nginx:latets
+    back_source_image: docker://nginx:latest
     back_destination_image: .azurecr.io/nginx:cp2
     arch: amd64
     os: linux

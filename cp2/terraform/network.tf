@@ -110,7 +110,7 @@ resource "local_file" "ansible_inventory" {
     depends_on = [ azurerm_public_ip.apip ]
     content  = <<-EOT
     [webserver]
-    ${azurerm_public_ip.apip.ip_address} ansible_user=adminuser
+    ${azurerm_public_ip.apip.ip_address} ansible_user=adminuser ansible_ssh_private_key_file=~/.ssh/id_rsa_azure ansible_ssh_common_args='-o StrictHostKeyChecking=no'
     EOT
     filename = "../ansible/ansible_vm_ip_inventory.ini"
 }

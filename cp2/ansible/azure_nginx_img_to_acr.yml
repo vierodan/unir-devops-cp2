@@ -1,10 +1,12 @@
 ---
-- name: Deploy Azure Vote Frontend image to Azure Container Registry
+- name: Deploy nginx image to Azure Container Registry
   hosts: localhost
   gather_facts: no
   vars:
-    front_source_image: docker://mcr.microsoft.com/azuredocs/azure-vote-front:v1
-    front_destination_image: .azurecr.io/azure-vote-front:cp2
+    back_source_image: docker://nginx:latets
+    back_destination_image: .azurecr.io/nginx:cp2
+    arch: amd64
+    os: linux
 
   tasks:
     - name: Login to Azure CLI
@@ -42,11 +44,7 @@
         msg: "Failed to log in to Azure Container Registry"
       when: login_result.rc != 0
 
-    - name: Copy front image from source to Azure Container Registry
-      command: skopeo copy {{ front_source_image }} docker://{{ lookup('env', 'ACR_NAME') }}{{ front_destination_image }}
+    - name: Copy back image from source to Azure Container Registry
+      command: skopeo copy --override-arch {{ arch }} --override-os {{ os }} {{ back_source_image }} docker://{{ lookup('env', 'ACR_NAME') }}{{ back_destination_image }}
       register: skopeo_copy
       failed_when: skopeo_copy.rc != 0
-
-    - name: Display Skopeo copy result
-      debug:
-        var: skopeo_copy.stdout_lines

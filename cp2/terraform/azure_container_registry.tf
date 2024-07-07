@@ -1,6 +1,6 @@
 # acr.tf
 
-/* resource "azurerm_container_registry" "acr" {
+ resource "azurerm_container_registry" "acr" {
     name                = var.azurerm_container_registry_name_value
     resource_group_name = var.azurerm_resource_group_name_value
     location            = var.azurerm_location_name_value
@@ -15,4 +15,4 @@
         environment = "development"
         project     = "cp2"
     }
-} */
+}

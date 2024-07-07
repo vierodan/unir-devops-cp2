@@ -4,7 +4,7 @@
   gather_facts: no
   vars:
     back_source_image: docker://mcr.microsoft.com/oss/bitnami/redis:6.0.8
-    back_destination_image: .azurecr.io/redis:6.0.8
+    back_destination_image: .azurecr.io/redis:cp2
     arch: amd64
     os: linux
 

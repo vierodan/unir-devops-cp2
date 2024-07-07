@@ -5,26 +5,37 @@
     - vault.yml
   become: yes
   tasks:
-    - name: Ensure dependencies are installed
-      apt:
-        name: "{{ packages }}"
-        state: present
-      vars:
-        packages:
-          - software-properties-common
-          - curl
-          - wget
-
-    - name: Add Podman PPA
-      apt_repository:
-        repo: ppa:projectatomic/ppa
-        state: present
-
-    - name: Update the apt cache
-      apt:
+    - name: Update apt cache
+      ansible.builtin.apt:
         update_cache: yes
 
     - name: Install Podman
-      apt:
+      ansible.builtin.apt:
         name: podman
         state: present
+
+    - name: Modify registries.conf for unqualified search registries
+      ansible.builtin.lineinfile:
+        path: /etc/containers/registries.conf
+        regexp: '^# unqualified-search-registries.*'
+        line: 'unqualified-search-registries = ["docker.io"]'
+        state: present
+
+    - name: Install podman-docker
+      ansible.builtin.apt:
+        name: podman-docker
+        state: present
+
+    - name: Install buildah
+      ansible.builtin.apt:
+        name: buildah
+        state: present
+
+    - name: Install skopeo
+      ansible.builtin.apt:
+        name: skopeo
+        state: present
+
+
+
+

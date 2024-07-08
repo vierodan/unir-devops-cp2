@@ -7,7 +7,7 @@ tfplan
 # Local .terraform directories
 **/.terraform/*
 
-**/launch_ansible_playbooks.sh
+**/export_sensitive_data.sh
 **/*inventory.ini
 **/*pwd*
 

@@ -1,3 +1,3 @@
 
-chmod +x launch_playbooks.sh
-./launch_playbooks.sh
+chmod +x launch_ansible_playbooks.sh
+./launch_ansible_playbooks.sh

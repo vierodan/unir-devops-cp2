@@ -61,3 +61,20 @@
     - name: Debug run result
       debug:
         var: run_result
+
+
+    - name: Check if container nginx is running
+      ansible.builtin.shell: >
+        podman ps --format "{{ container_name }}" | grep "{{ container_name }}"
+      register: container_running_check
+      ignore_errors: yes
+
+    - name: Debug container nginx running status
+      debug:
+        msg: "Container {{ container_name }} is running"
+      when: container_running_check.rc == 0
+
+    - name: Debug container nginx not running status
+      debug:
+        msg: "Container {{ container_name }} is not running"
+      when: container_running_check.rc != 0

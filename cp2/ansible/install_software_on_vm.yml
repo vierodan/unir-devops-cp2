@@ -6,9 +6,45 @@
   become: yes
 
   tasks:
-    - name: Update apt cache
-      ansible.builtin.apt:
+    - name: Ensure required packages are installed
+      apt:
+        name:
+          - curl
+          - lsb-release
+          - apt-transport-https
+          - gnupg
+        state: present
         update_cache: yes
+
+        
+    - name: Install the Azure CLI repository key
+      shell: |
+        curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null
+      register: install_key_result
+      ignore_errors: yes
+
+    - name: Fail if installing repository key failed
+      fail:
+        msg: "Failed to install the Azure CLI repository key"
+      when: install_key_result.rc != 0
+
+    - name: Add Azure CLI repository
+      shell: |
+        sudo add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main"
+      register: add_repo_result
+      ignore_errors: yes
+
+    - name: Fail if adding repository failed
+      fail:
+        msg: "Failed to add the Azure CLI repository"
+      when: add_repo_result.rc != 0
+
+    - name: Install Azure CLI
+      apt:
+        name: azure-cli
+        state: present
+        update_cache: yes
+
 
     - name: Install Podman
       ansible.builtin.apt:
@@ -27,10 +63,12 @@
         name: podman-docker
         state: present
 
+
     - name: Install buildah
       ansible.builtin.apt:
         name: buildah
         state: present
+
 
     - name: Install skopeo
       ansible.builtin.apt:

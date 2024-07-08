@@ -20,6 +20,7 @@
       ansible.builtin.command: >
         az account set --subscription "{{ lookup('env', 'SUBSCRIPTION_ID') }}"
 
+
     - name: Get ACR login access token
       ansible.builtin.command: >
         az acr login --name {{ lookup('env', 'ACR_NAME') }} --expose-token
@@ -35,16 +36,17 @@
       register: login_result
       ignore_errors: yes
 
-    - name: Debug login result
-      debug:
-        var: login_result
-
     - name: Fail if login to ACR failed
       fail:
         msg: "Failed to log in to Azure Container Registry"
       when: login_result.rc != 0
 
+
     - name: Copy back image from source to Azure Container Registry
       command: skopeo copy --override-arch {{ arch }} --override-os {{ os }} {{ back_source_image }} docker://{{ lookup('env', 'ACR_NAME') }}{{ back_destination_image }}
       register: skopeo_copy
       failed_when: skopeo_copy.rc != 0
+
+    - name: Display Skopeo copy result
+      debug:
+        var: skopeo_copy.stdout_lines

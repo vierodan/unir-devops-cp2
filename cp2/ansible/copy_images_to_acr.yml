@@ -1,10 +1,16 @@
 ---
-- name: Deploy Azure Vote Frontend image to Azure Container Registry
+- name: Deploy images to Azure Container Registry
   hosts: localhost
-  gather_facts: no
+  gather_facts: yes
   vars:
+    nginx_source_image: docker://nginx:latest
+    nginx_destination_image: .azurecr.io/nginx:cp2
+    redis_source_image: docker://mcr.microsoft.com/oss/bitnami/redis:6.0.8
+    redis_destination_image: .azurecr.io/redis:cp2
     front_source_image: docker://mcr.microsoft.com/azuredocs/azure-vote-front:v1
     front_destination_image: .azurecr.io/azure-vote-front:cp2
+    arch: amd64
+    os: linux
 
   tasks:
     - name: Login to Azure CLI
@@ -38,13 +44,34 @@
       fail:
         msg: "Failed to log in to Azure Container Registry"
       when: login_result.rc != 0
-      
 
-    - name: Copy front image from source to Azure Container Registry
+
+    - name: Copy nginx from Docker to Azure Container Registry
+      command: skopeo copy --override-arch {{ arch }} --override-os {{ os }} {{ nginx_source_image }} docker://{{ lookup('env', 'ACR_NAME') }}{{ nginx_destination_image }}
+      register: skopeo_copy
+      failed_when: skopeo_copy.rc != 0
+
+    - name: Display Skopeo copy result for nginx
+      debug:
+        var: skopeo_copy.stdout_lines
+
+
+    - name: Copy redis image from Mcrosoft to Azure Container Registry
+      command: skopeo copy --override-arch {{ arch }} --override-os {{ os }} {{ redis_source_image }} docker://{{ lookup('env', 'ACR_NAME') }}{{ redis_destination_image }}
+      register: skopeo_copy
+      failed_when: skopeo_copy.rc != 0
+
+    - name: Display Skopeo copy result for redis
+      debug:
+        var: skopeo_copy.stdout_lines
+
+    - name: Copy voting front image from Microsoft to Azure Container Registry
       command: skopeo copy {{ front_source_image }} docker://{{ lookup('env', 'ACR_NAME') }}{{ front_destination_image }}
       register: skopeo_copy
       failed_when: skopeo_copy.rc != 0
 
-    - name: Display Skopeo copy result
+    - name: Display Skopeo copy result for voting front
       debug:
         var: skopeo_copy.stdout_lines
+
+

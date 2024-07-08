@@ -1,5 +1,5 @@
 
-chmod +x azure_resurce_group_to_delete.sh
-./azure_resurce_group_to_delete.sh
+chmod +x remove_azure_resurce_group.sh
+./remove_azure_resurce_group.sh
 
 

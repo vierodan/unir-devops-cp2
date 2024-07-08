@@ -1,6 +1,7 @@
 all:
   hosts:
     localhost:
+     ansible_connection: local  # Use 'local' for connections to localhost
   vars:
     acr_name: "{{ lookup('env', 'ACR_NAME') }}"
     resource_group: "{{ lookup('env', 'RESOURCE_GROUP') }}"

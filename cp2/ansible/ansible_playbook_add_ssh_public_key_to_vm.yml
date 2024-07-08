@@ -1,6 +1,7 @@
 ---
-- hosts: localhost
-  connection: local
+- name: Add SSH public key to Azure VM
+  hosts: localhost
+  gather_facts: yes
   
   tasks:
     - name: Add SSH public key to Azure VM

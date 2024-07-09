@@ -61,15 +61,15 @@
       ansible.builtin.command: >
         kubectl -n avrakscp2 apply -f "{{ deployment_file_path }}"
 
-    - name: Sleep for 10 seconds
+    - name: Sleep for 60 seconds
       pause:
-        seconds: 25
+        seconds: 60
 
     - name: Get AKS services
       ansible.builtin.command: >
-        kubectl get services -n avrakscp2
+        kubectl get services -n avrakscp2 -o json
       register: aks_services
 
     - name: Print AKS services
       debug:
-        msg: "{{ aks_services.stdout }}"
+        msg: "{{ aks_services.stdout | from_json | to_nice_json }}"

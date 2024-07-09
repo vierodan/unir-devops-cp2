@@ -1,5 +1,7 @@
 # .gitignore for Terraform
 
+.vscode
+
 .terraform
 
 tfplan

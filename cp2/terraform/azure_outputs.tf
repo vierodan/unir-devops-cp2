@@ -31,7 +31,7 @@ output "admin_username" {
     value       = azurerm_linux_virtual_machine.avml.admin_username
 }
 
-/* output "kube_config" {
+output "kube_config" {
   value     = azurerm_kubernetes_cluster.aks.kube_config_raw
   sensitive = true
-} */
+}

@@ -1,5 +1,5 @@
 ---
-- name: Run nginx container with podmsn on Azure VM
+- name: Run nginx container with Podman on Azure VM
   hosts: webserver
   gather_facts: yes
   remote_user: adminuser

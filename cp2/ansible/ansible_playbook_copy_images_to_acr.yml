@@ -56,7 +56,7 @@
         var: skopeo_copy.stdout_lines
 
 
-    - name: Copy redis image from Mcrosoft to Azure Container Registry
+    - name: Copy redis image from Microsoft to Azure Container Registry
       command: skopeo copy --override-arch {{ arch }} --override-os {{ os }} {{ redis_source_image }} docker://{{ lookup('env', 'ACR_NAME') }}{{ redis_destination_image }}
       register: skopeo_copy
       failed_when: skopeo_copy.rc != 0

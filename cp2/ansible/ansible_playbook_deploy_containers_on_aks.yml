@@ -61,6 +61,10 @@
       ansible.builtin.command: >
         kubectl -n avrakscp2 apply -f "{{ deployment_file_path }}"
 
+    - name: Sleep for 10 seconds
+      pause:
+        seconds: 25
+
     - name: Get AKS services
       ansible.builtin.command: >
         kubectl get services -n avrakscp2

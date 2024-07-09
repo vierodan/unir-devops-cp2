@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cp2appbackend
+  namespace: avrakscp2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cp2appbackend
+  template:
+    metadata:
+      labels:
+        app: cp2appbackend
+    spec:
+      containers:
+      - name: cp2appbackend
+        image: avrcp2acr.azurecr.io/redis:cp2
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
+        ports:
+        - containerPort: 6379
+        env:
+        - name: ALLOW_EMPTY_PASSWORD
+          value: "yes"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cp2appbackend
+  namespace: avrakscp2
+spec:
+  ports:
+  - port: 6379
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cp2appfrontend
+  namespace: avrakscp2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cp2appfrontend
+  template:
+    metadata:
+      labels:
+        app: cp2appfrontend
+    spec:
+      nodeSelector:
+        kubernetes.io/os: linux
+      containers:
+      - name: cp2appfrontend
+        image: avrcp2acr.azurecr.io/azure-vote-front:cp2
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
+        ports:
+        - containerPort: 80
+        env:
+        - name: REDIS
+          value: "backend"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cp2appfrontend
+  namespace: avrakscp2
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+

@@ -1,6 +1,6 @@
 # vm.tf
 
-resource "azurerm_linux_virtual_machine" "avml" {
+/* resource "azurerm_linux_virtual_machine" "avml" {
     name                = var.azurerm_virtual_machine_linux_name_value
     location            = var.azurerm_location_name_value
     resource_group_name = var.azurerm_resource_group_name_value
@@ -39,5 +39,5 @@ resource "azurerm_linux_virtual_machine" "avml" {
         environment = "development"
         project     = "cp2"
     }
-}
+} */
 

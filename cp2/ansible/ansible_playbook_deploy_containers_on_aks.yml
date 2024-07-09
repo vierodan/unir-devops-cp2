@@ -1,0 +1,49 @@
+---
+- name: Deploy container to AKS
+  hosts: localhost
+  gather_facts: yes
+  vars:
+    aks_cluster_name: "avrcp2aks"
+    deployment_file_path: "~/avr/unir/repo/unir-devops-cp2/cp2/ansible/aks_deployment.yml"  # Full path to the deployment file
+
+  tasks:
+    - name: Login to Azure CLI
+      ansible.builtin.command: >
+        az login --service-principal
+        --username "{{ lookup('env', 'CLIENT_ID') }}"
+        --password "{{ lookup('env', 'CLIENT_SECRET') }}"
+        --tenant "{{ lookup('env', 'TENANT_ID') }}"
+
+    - name: Set Azure subscription
+      ansible.builtin.command: >
+        az account set --subscription "{{ lookup('env', 'SUBSCRIPTION_ID') }}"
+
+
+    - name: Get ACR login access token
+      ansible.builtin.command: >
+        az acr login --name {{ lookup('env', 'ACR_NAME') }} --expose-token
+      register: acr_login_result
+
+    - name: Parse ACR login access token
+      set_fact:
+        acr_access_token: "{{ acr_login_result.stdout | from_json | json_query('accessToken') }}"
+
+    - name: Log in to Azure Container Registry with Podman using access token
+      ansible.builtin.command: >
+        podman login {{ lookup('env', 'ACR_NAME') }}.azurecr.io -u 00000000-0000-0000-0000-000000000000 -p "{{ acr_access_token }}"
+      register: login_result
+      ignore_errors: yes
+
+    - name: Fail if login to ACR failed
+      fail:
+        msg: "Failed to log in to Azure Container Registry"
+      when: login_result.rc != 0
+
+
+    - name: Get AKS credentials
+      ansible.builtin.command: >
+        az aks get-credentials --resource-group "{{ lookup('env', 'RESOURCE_GROUP') }}" --name "{{ aks_cluster_name }}" --overwrite-existing
+    
+    - name: Apply Kubernetes deployment
+      ansible.builtin.command: >
+        kubectl -n avrakscp2 apply -f "{{ deployment_file_path }}"

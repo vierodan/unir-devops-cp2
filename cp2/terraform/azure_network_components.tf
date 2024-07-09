@@ -1,6 +1,6 @@
 # network.tf
 
-resource "azurerm_virtual_network" "avn" {
+/* resource "azurerm_virtual_network" "avn" {
     name                = var.azurerm_virtual_network_name_value
     address_space       = ["10.0.0.0/16"]
     location            = var.azurerm_location_name_value
@@ -125,5 +125,5 @@ resource "local_file" "ansible_inventory" {
     ${azurerm_public_ip.apip.ip_address} ansible_user=adminuser ansible_ssh_private_key_file=~/.ssh/id_rsa_azure ansible_ssh_common_args='-o StrictHostKeyChecking=no'
     EOT
     filename = "../ansible/ansible_vm_ip_inventory.ini"
-}
+} */
 

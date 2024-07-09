@@ -21,7 +21,7 @@ output "resource_group_name" {
     value       = azurerm_resource_group.arg.name
 }
 
-output "virtual_machine_public_ip" {
+/* output "virtual_machine_public_ip" {
     description = "The public IP address of the virtual machine"
     value       = azurerm_public_ip.apip.ip_address
 }
@@ -29,7 +29,7 @@ output "virtual_machine_public_ip" {
 output "admin_username" {
     description = "The admin username for the virtual machine"
     value       = azurerm_linux_virtual_machine.avml.admin_username
-}
+} */
 
 output "kube_config" {
   value     = azurerm_kubernetes_cluster.aks.kube_config_raw

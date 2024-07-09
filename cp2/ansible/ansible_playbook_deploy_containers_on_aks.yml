@@ -5,6 +5,10 @@
   vars:
     aks_cluster_name: "avrcp2aks"
     deployment_file_path: "~/avr/unir/repo/unir-devops-cp2/cp2/ansible/aks_deployment.yml"  # Full path to the deployment file
+    acr_name: "{{ lookup('env', 'ACR_NAME') }}"
+    acr_username: "{{ lookup('env', 'CLIENT_ID') }}"
+    acr_password: "{{ lookup('env', 'CLIENT_SECRET') }}"
+    acr_server: "{{ acr_name }}.azurecr.io"
 
   tasks:
     - name: Login to Azure CLI
@@ -28,31 +32,40 @@
       set_fact:
         acr_access_token: "{{ acr_login_result.stdout | from_json | json_query('accessToken') }}"
 
-    - name: Log in to Azure Container Registry with Podman using access token
-      ansible.builtin.command: >
-        podman login {{ lookup('env', 'ACR_NAME') }}.azurecr.io -u 00000000-0000-0000-0000-000000000000 -p "{{ acr_access_token }}"
-      register: login_result
-      ignore_errors: yes
-
-    - name: Fail if login to ACR failed
-      fail:
-        msg: "Failed to log in to Azure Container Registry"
-      when: login_result.rc != 0
-
-
     - name: Get AKS credentials
       ansible.builtin.command: >
         az aks get-credentials --resource-group "{{ lookup('env', 'RESOURCE_GROUP') }}" --name "{{ aks_cluster_name }}" --overwrite-existing
 
-    - name: Check if namespace exists
-      shell: kubectl get namespace avrakscp2
-      register: namespace_check
-      ignore_errors: true
+    - name: Ensure namespace exists
+      ansible.builtin.command: >
+        kubectl apply -f -
+      args:
+        stdin: |
+          apiVersion: v1
+          kind: Namespace
+          metadata:
+            name: avrakscp2
 
-    - name: Create namespace if it does not exist
-      shell: kubectl create namespace avrakscp2
-      when: namespace_check.rc != 0
+    - name: Create Docker registry secret for ACR
+      shell: >
+        kubectl create secret docker-registry acr-secret
+        --docker-server="{{ acr_server }}"
+        --docker-username="{{ acr_username }}"
+        --docker-password="{{ acr_password }}"
+        --docker-email="vierodan@gmail.com"
+        -n avrakscp2
+      register: acr_secret_result
+      ignore_errors: true
     
     - name: Apply Kubernetes deployment
       ansible.builtin.command: >
         kubectl -n avrakscp2 apply -f "{{ deployment_file_path }}"
+
+    - name: Get AKS services
+      ansible.builtin.command: >
+        kubectl get services -n avrakscp2
+      register: aks_services
+
+    - name: Print AKS services
+      debug:
+        msg: "{{ aks_services.stdout }}"

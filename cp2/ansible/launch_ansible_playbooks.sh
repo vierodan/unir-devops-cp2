@@ -10,13 +10,13 @@ echo "RESOURCE_GROUP=$RESOURCE_GROUP"
 ansible-playbook -i ansible_playbook_host.yml ansible_playbook_copy_images_to_acr.yml
 
 # Run the Ansible playbook - Add SSH public key to Azure VM
-#ansible-playbook -i ansible_playbook_host.yml ansible_playbook_add_ssh_public_key_to_vm.yml
+ansible-playbook -i ansible_playbook_host.yml ansible_playbook_add_ssh_public_key_to_vm.yml
 
 # Run the Ansible playbook - Install all necessary softwre on Azure VM
-#ansible-playbook -i ansible_vm_ip_inventory.ini ansible_playbook_install_software_on_vm.yml
+ansible-playbook -i ansible_vm_ip_inventory.ini ansible_playbook_install_software_on_vm.yml
 
 # Run the Ansible playbook - Run nginx container on Azure VM using Posman
-#ansible-playbook -i ansible_vm_ip_inventory.ini ansible_playbook_run_nginx_container_on_vm.yml
+ansible-playbook -i ansible_vm_ip_inventory.ini ansible_playbook_run_nginx_container_on_vm.yml
 
 #Run the Ansible playbook - Deploy containers on AKS
 ansible-playbook -i ansible_playbook_host.yml ansible_playbook_deploy_containers_on_aks.yml

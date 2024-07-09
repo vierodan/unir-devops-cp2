@@ -13,6 +13,8 @@ spec:
       labels:
         app: backend
     spec:
+      imagePullSecrets:
+        - name: acr-secret
       containers:
       - name: backend
         image: avrcp2acr.azurecr.io/redis:cp2
@@ -31,7 +33,6 @@ spec:
         volumeMounts:
         - name: redis-data
           mountPath: /data
-
       volumes:
       - name: redis-data
         persistentVolumeClaim:
@@ -77,6 +78,8 @@ spec:
       labels:
         app: frontend
     spec:
+      imagePullSecrets:
+        - name: acr-secret
       containers:
       - name: frontend
         image: avrcp2acr.azurecr.io/azure-vote-front:cp2
@@ -92,6 +95,7 @@ spec:
         env:
         - name: REDIS
           value: "backend"
+
 
 ---
 apiVersion: v1

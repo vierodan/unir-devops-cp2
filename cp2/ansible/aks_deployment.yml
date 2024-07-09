@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cp2appbackend
+  name: backend
   namespace: avrakscp2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cp2appbackend
+      app: backend
   template:
     metadata:
       labels:
-        app: cp2appbackend
+        app: backend
     spec:
       containers:
-      - name: cp2appbackend
+      - name: backend
         image: avrcp2acr.azurecr.io/redis:cp2
         resources:
           requests:
@@ -28,37 +28,57 @@ spec:
         env:
         - name: ALLOW_EMPTY_PASSWORD
           value: "yes"
+        volumeMounts:
+        - name: redis-data
+          mountPath: /data
 
+      volumes:
+      - name: redis-data
+        persistentVolumeClaim:
+          claimName: redis-pvc
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: cp2appbackend
+  name: backend
   namespace: avrakscp2
 spec:
   ports:
   - port: 6379
+  selector:
+    app: backend
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-pvc
+  namespace: avrakscp2
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cp2appfrontend
+  name: frontend
   namespace: avrakscp2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cp2appfrontend
+      app: frontend
   template:
     metadata:
       labels:
-        app: cp2appfrontend
+        app: frontend
     spec:
-      nodeSelector:
-        kubernetes.io/os: linux
       containers:
-      - name: cp2appfrontend
+      - name: frontend
         image: avrcp2acr.azurecr.io/azure-vote-front:cp2
         resources:
           requests:
@@ -77,10 +97,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: cp2appfrontend
+  name: frontend
   namespace: avrakscp2
 spec:
   type: LoadBalancer
   ports:
   - port: 80
+  selector:
+    app: frontend
+
+
 

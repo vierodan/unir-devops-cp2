@@ -43,6 +43,15 @@
     - name: Get AKS credentials
       ansible.builtin.command: >
         az aks get-credentials --resource-group "{{ lookup('env', 'RESOURCE_GROUP') }}" --name "{{ aks_cluster_name }}" --overwrite-existing
+
+    - name: Check if namespace exists
+      shell: kubectl get namespace avrakscp2
+      register: namespace_check
+      ignore_errors: true
+
+    - name: Create namespace if it does not exist
+      shell: kubectl create namespace avrakscp2
+      when: namespace_check.rc != 0
     
     - name: Apply Kubernetes deployment
       ansible.builtin.command: >

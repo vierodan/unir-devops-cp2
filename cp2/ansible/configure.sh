@@ -3,9 +3,6 @@
 # Source of script with sensitive data about azure credentials. (This .sh is not included on the git repository)
 source ./export_sensitive_data.sh
 
-echo "ACR_NAME=$ACR_NAME"
-echo "RESOURCE_GROUP=$RESOURCE_GROUP"
-
 # Run the Ansible playbook - create images on ACR using Skopeo
 export ANSIBLE_PYTHON_INTERPRETER=/Users/angelviejobueno/myenv/bin/python3.12
 ansible-playbook -i ansible_playbook_host.yml ansible_playbook_copy_images_to_acr.yml

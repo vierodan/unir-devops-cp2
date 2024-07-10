@@ -9,3 +9,5 @@ cd ..
 cd ansible
 chmod +x configure.sh
 ./configure.sh
+sleep 120
+kubectl get services -n avrakscp2

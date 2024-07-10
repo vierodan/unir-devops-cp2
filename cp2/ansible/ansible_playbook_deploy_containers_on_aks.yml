@@ -1,5 +1,5 @@
 ---
-- name: Deploy container to AKS
+- name: Deploy App (back and front) as a Pods to AKS
   hosts: localhost
   gather_facts: yes
   vars:
@@ -61,15 +61,3 @@
       ansible.builtin.command: >
         kubectl -n avrakscp2 apply -f "{{ deployment_file_path }}"
 
-    - name: Sleep for 60 seconds
-      pause:
-        seconds: 60
-
-    - name: Get AKS services
-      ansible.builtin.command: >
-        kubectl get services -n avrakscp2 -o json
-      register: aks_services
-
-    - name: Print AKS services
-      debug:
-        msg: "{{ aks_services.stdout | from_json | to_nice_json }}"

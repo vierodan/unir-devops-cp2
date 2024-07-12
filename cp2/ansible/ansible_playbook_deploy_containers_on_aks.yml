@@ -37,10 +37,9 @@
         az aks get-credentials --resource-group "{{ lookup('env', 'RESOURCE_GROUP') }}" --name "{{ aks_cluster_name }}" --overwrite-existing
 
     - name: Ensure namespace exists
-      ansible.builtin.command: >
-        kubectl apply -f -
-      args:
-        stdin: |
+      community.kubernetes.k8s:
+        state: present
+        definition:
           apiVersion: v1
           kind: Namespace
           metadata:
@@ -58,6 +57,9 @@
       ignore_errors: true
     
     - name: Apply Kubernetes deployment
-      ansible.builtin.command: >
-        kubectl -n avrakscp2 apply -f "{{ deployment_file_path }}"
+      community.kubernetes.k8s:
+        state: present
+        namespace: avrakscp2
+        src: "{{ deployment_file_path }}"
+
 

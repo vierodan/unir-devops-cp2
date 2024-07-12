@@ -44,17 +44,27 @@
       when: login_result.rc != 0
 
 
+
     - name: Pull container image from Azure Container Registry
-      ansible.builtin.shell: podman pull {{ container_image }}
+      containers.podman.podman_image:
+        name: "{{ container_image }}"
+        state: present
       register: pull_result
       ignore_errors: yes
 
-    - name: Debug pull result
+    - name: Display pull result
       ansible.builtin.debug:
         var: pull_result
 
+
+
     - name: Run container using Podman with port mapping
-      ansible.builtin.shell: podman run -d --name {{ container_name }} -p {{ host_port }}:{{ container_port }} {{ container_image }}
+      containers.podman.podman_container:
+        name: "{{ container_name }}"
+        image: "{{ container_image }}"
+        state: started
+        publish:
+          - "{{ host_port }}:{{ container_port }}"
       register: run_result
       ignore_errors: yes
 
@@ -63,18 +73,18 @@
         var: run_result
 
 
+
     - name: Check if container nginx is running
-      ansible.builtin.shell: >
-        podman ps --format "{{ container_name }}" | grep "{{ container_name }}"
-      register: container_running_check
+      containers.podman.podman_container_info:
+        name: "{{ container_name }}"
+      register: container_info
       ignore_errors: yes
 
-    - name: Debug container nginx running status
-      ansible.builtin.debug:
-        msg: "Container {{ container_name }} is running"
-      when: container_running_check.rc == 0
+    - name: Set fact if container is running
+      ansible.builtin.set_fact:
+        container_running: "{{ container_info.containers | selectattr('State.Status', 'equalto', 'running') | list | length > 0 }}"
 
-    - name: Debug container nginx not running status
+    - name: Debug container running status
       ansible.builtin.debug:
-        msg: "Container {{ container_name }} is not running"
-      when: container_running_check.rc != 0
+        var: container_running
+

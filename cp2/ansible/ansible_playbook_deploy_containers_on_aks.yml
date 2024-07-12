@@ -29,7 +29,7 @@
       register: acr_login_result
 
     - name: Parse ACR login access token
-      set_fact:
+      ansible.builtin.set_fact:
         acr_access_token: "{{ acr_login_result.stdout | from_json | json_query('accessToken') }}"
 
     - name: Get AKS credentials
@@ -47,7 +47,7 @@
             name: avrakscp2
 
     - name: Create Docker registry secret for ACR
-      shell: >
+      ansible.builtin.shell: >
         kubectl create secret docker-registry acr-secret
         --docker-server="{{ acr_server }}"
         --docker-username="{{ acr_username }}"

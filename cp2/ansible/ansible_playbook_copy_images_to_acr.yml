@@ -41,37 +41,40 @@
       ignore_errors: yes
 
     - name: Fail if login to ACR failed
-      fail:
+      ansible.builtin.fail:
         msg: "Failed to log in to Azure Container Registry"
       when: login_result.rc != 0
 
 
     - name: Copy nginx from Docker to Azure Container Registry
-      command: skopeo copy --override-arch {{ arch }} --override-os {{ os }} {{ nginx_source_image }} docker://{{ lookup('env', 'ACR_NAME') }}{{ nginx_destination_image }}
+      ansible.builtin.command: >
+        skopeo copy --override-arch {{ arch }} --override-os {{ os }} {{ nginx_source_image }} docker://{{ lookup('env', 'ACR_NAME') }}{{ nginx_destination_image }}
       register: skopeo_copy
       failed_when: skopeo_copy.rc != 0
 
     - name: Display Skopeo copy result for nginx
-      debug:
+      ansible.builtin.debug:
         var: skopeo_copy.stdout_lines
 
 
     - name: Copy redis image from Microsoft to Azure Container Registry
-      command: skopeo copy --override-arch {{ arch }} --override-os {{ os }} {{ redis_source_image }} docker://{{ lookup('env', 'ACR_NAME') }}{{ redis_destination_image }}
+      ansible.builtin.command: >
+        skopeo copy --override-arch {{ arch }} --override-os {{ os }} {{ redis_source_image }} docker://{{ lookup('env', 'ACR_NAME') }}{{ redis_destination_image }}
       register: skopeo_copy
       failed_when: skopeo_copy.rc != 0
 
     - name: Display Skopeo copy result for redis
-      debug:
+      ansible.builtin.debug:
         var: skopeo_copy.stdout_lines
 
     - name: Copy voting front image from Microsoft to Azure Container Registry
-      command: skopeo copy {{ front_source_image }} docker://{{ lookup('env', 'ACR_NAME') }}{{ front_destination_image }}
+      ansible.builtin.command: >
+        skopeo copy {{ front_source_image }} docker://{{ lookup('env', 'ACR_NAME') }}{{ front_destination_image }}
       register: skopeo_copy
       failed_when: skopeo_copy.rc != 0
 
     - name: Display Skopeo copy result for voting front
-      debug:
+      ansible.builtin.debug:
         var: skopeo_copy.stdout_lines
 
 

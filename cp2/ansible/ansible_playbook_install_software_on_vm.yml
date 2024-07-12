@@ -7,7 +7,7 @@
 
   tasks:
     - name: Ensure required packages are installed
-      apt:
+      ansible.builtin.apt:
         name:
           - curl
           - lsb-release
@@ -18,29 +18,29 @@
 
         
     - name: Install the Azure CLI repository key
-      shell: |
+      ansible.builtin.shell: |
         curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null
       register: install_key_result
       ignore_errors: yes
 
     - name: Fail if installing repository key failed
-      fail:
+      ansible.builtin.fail:
         msg: "Failed to install the Azure CLI repository key"
       when: install_key_result.rc != 0
 
     - name: Add Azure CLI repository
-      shell: |
+      ansible.builtin.shell: |
         sudo add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main"
       register: add_repo_result
       ignore_errors: yes
 
     - name: Fail if adding repository failed
-      fail:
+      ansible.builtin.fail:
         msg: "Failed to add the Azure CLI repository"
       when: add_repo_result.rc != 0
 
     - name: Install Azure CLI
-      apt:
+      ansible.builtin.apt:
         name: azure-cli
         state: present
         update_cache: yes

@@ -1,14 +1,16 @@
 ---
 - name: Add SSH public key to Azure VM
   hosts: localhost
-  gather_facts: yes
-  
+  gather_facts: true
+
   tasks:
     - name: Add SSH public key to Azure VM
-      ansible.builtin.shell: |
+      ansible.builtin.command: >
         az vm user update \
           --resource-group avrcp2arg \
           --name avrcp2vml \
           --username adminuser \
           --ssh-key-value "{{ lookup('file', '~/.ssh/id_rsa_azure.pub') }}"
-      changed_when: false
+      register: az_vm_user_updated
+      changed_when: az_vm_user_updated.rc != 0
+      failed_when: az_vm_user_updated.rc != 0

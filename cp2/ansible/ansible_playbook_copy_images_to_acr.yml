@@ -1,7 +1,7 @@
 ---
 - name: Deploy images to Azure Container Registry
   hosts: localhost
-  gather_facts: yes
+  gather_facts: true
   vars:
     nginx_source_image: docker://nginx:latest
     nginx_destination_image: .azurecr.io/nginx:cp2
@@ -19,62 +19,72 @@
         --username "{{ lookup('env', 'CLIENT_ID') }}"
         --password "{{ lookup('env', 'CLIENT_SECRET') }}"
         --tenant "{{ lookup('env', 'TENANT_ID') }}"
+      register: az_login
+      changed_when: az_login.rc != 0
+      failed_when: az_login.rc != 0
 
     - name: Set Azure subscription
       ansible.builtin.command: >
         az account set --subscription "{{ lookup('env', 'SUBSCRIPTION_ID') }}"
-
+      register: azure_subscription
+      changed_when: azure_subscription.rc != 0
+      failed_when: azure_subscription.rc != 0
 
     - name: Get ACR login access token
       ansible.builtin.command: >
         az acr login --name {{ lookup('env', 'ACR_NAME') }} --expose-token
       register: acr_login_result
+      changed_when: acr_login_result.rc != 0
+      failed_when: acr_login_result.rc != 0
 
     - name: Parse ACR login access token
-      set_fact:
+      ansible.builtin.set_fact:
         acr_access_token: "{{ acr_login_result.stdout | from_json | json_query('accessToken') }}"
 
     - name: Log in to Azure Container Registry with Podman using access token
       ansible.builtin.command: >
         podman login {{ lookup('env', 'ACR_NAME') }}.azurecr.io -u 00000000-0000-0000-0000-000000000000 -p "{{ acr_access_token }}"
-      register: login_result
-      ignore_errors: yes
-
-    - name: Fail if login to ACR failed
-      ansible.builtin.fail:
-        msg: "Failed to log in to Azure Container Registry"
-      when: login_result.rc != 0
-
+      register: podman_login_result
+      changed_when: podman_login_result.rc != 0
+      failed_when: podman_login_result.rc != 0
 
     - name: Copy nginx from Docker to Azure Container Registry
       ansible.builtin.command: >
-        skopeo copy --override-arch {{ arch }} --override-os {{ os }} {{ nginx_source_image }} docker://{{ lookup('env', 'ACR_NAME') }}{{ nginx_destination_image }}
-      register: skopeo_copy
-      failed_when: skopeo_copy.rc != 0
+        skopeo copy
+        --override-arch {{ arch }}
+        --override-os {{ os }}
+        {{ nginx_source_image }}
+        docker://{{ lookup('env', 'ACR_NAME') }}{{ nginx_destination_image }}
+      register: nginx_skopeo_copy
+      changed_when: nginx_skopeo_copy.rc != 0
+      failed_when: nginx_skopeo_copy.rc != 0
 
     - name: Display Skopeo copy result for nginx
       ansible.builtin.debug:
-        var: skopeo_copy.stdout_lines
-
+        var: nginx_skopeo_copy.stdout_lines
 
     - name: Copy redis image from Microsoft to Azure Container Registry
       ansible.builtin.command: >
-        skopeo copy --override-arch {{ arch }} --override-os {{ os }} {{ redis_source_image }} docker://{{ lookup('env', 'ACR_NAME') }}{{ redis_destination_image }}
-      register: skopeo_copy
-      failed_when: skopeo_copy.rc != 0
+        skopeo copy
+        --override-arch {{ arch }}
+        --override-os {{ os }}
+        {{ redis_source_image }}
+        docker://{{ lookup('env', 'ACR_NAME') }}{{ redis_destination_image }}
+      register: redis_skopeo_copy
+      changed_when: redis_skopeo_copy.rc != 0
+      failed_when: redis_skopeo_copy.rc != 0
 
     - name: Display Skopeo copy result for redis
       ansible.builtin.debug:
-        var: skopeo_copy.stdout_lines
+        var: redis_skopeo_copy.stdout_lines
 
     - name: Copy voting front image from Microsoft to Azure Container Registry
       ansible.builtin.command: >
         skopeo copy {{ front_source_image }} docker://{{ lookup('env', 'ACR_NAME') }}{{ front_destination_image }}
-      register: skopeo_copy
-      failed_when: skopeo_copy.rc != 0
+      register: voting_skopeo_copy
+      changed_when: voting_skopeo_copy.rc != 0
+      failed_when: voting_skopeo_copy.rc != 0
 
     - name: Display Skopeo copy result for voting front
       ansible.builtin.debug:
-        var: skopeo_copy.stdout_lines
-
-
+        var: voting_skopeo_copy.stdout_lines

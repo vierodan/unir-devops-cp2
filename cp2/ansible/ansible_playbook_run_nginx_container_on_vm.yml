@@ -53,10 +53,6 @@
       register: pull_result
       ignore_errors: true
 
-    - name: Display pull result
-      ansible.builtin.debug:
-        var: pull_result
-
     - name: Run container using Podman with port mapping
       containers.podman.podman_container:
         name: "{{ container_name }}"

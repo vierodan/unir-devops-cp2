@@ -1,0 +1,9 @@
+---
+- name: Calcupate VM public IP
+  hosts: webserver
+  gather_facts: true
+
+  tasks:
+    - name: Display public IP of VM
+      ansible.builtin.debug:
+        msg: "The public IP of Linux VM is {{ ansible_host }}"

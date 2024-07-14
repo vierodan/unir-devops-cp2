@@ -24,10 +24,11 @@ ansible-playbook -i ansible_inventory_vm.ini ansible_playbook_install_software_o
 # Run the Ansible playbook - Run nginx container on Azure VM using Posman
 ansible-playbook -i ansible_inventory_vm.ini ansible_playbook_run_nginx_container_on_vm.yml
 
+#Set Ansible Python Interpetrer path for localhost
+export ANSIBLE_PYTHON_INTERPRETER=~/myenv/bin/python3.12
 
-
-
-
+# Run the Ansible playbook - Calculate public IPs
+ansible-playbook -i ansible_inventory_localhost.yml ansible_playbook_calculate_public_ips.yml
 
 
 

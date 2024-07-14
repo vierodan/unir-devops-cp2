@@ -1,0 +1,46 @@
+---
+- name: Calculate public IPs
+  hosts: localhost
+  gather_facts: true
+  vars:
+    resource_group: avrcp2arg
+    vm_name: avrcp2vml
+
+  tasks:
+    - name: Wait for AKS service frontend to be created
+      kubernetes.core.k8s_info:
+        kind: Service
+        namespace: avrakscp2
+        name: frontend
+      register: service_info
+      until: service_info.resources[0].status.loadBalancer.ingress | default([]) | length > 0
+      retries: 10
+      delay: 10
+
+    - name: Get the public IP of the AKS service
+      ansible.builtin.set_fact:
+        public_ip: "{{ service_info.resources[0].status.loadBalancer.ingress[0].ip }}"
+
+    - name: Display the public IP of AKS frontend app
+      ansible.builtin.debug:
+        msg: "The public IP of the AKS service is {{ public_ip }}"
+
+    - name: Get network interface information
+      azure.azcollection.azure_rm_networkinterface_info:
+        resource_group: "{{ resource_group }}"
+        name: "{{ vm_name }}-nic"
+      register: nic_info
+
+    - name: Get public IP address information
+      azure.azcollection.azure_rm_networkinterface_info:
+        resource_group: "{{ resource_group }}"
+        name: "{{ nic_info.networkinterfaces[0].ip_configurations[0].public_ip_address.split('/')[-1] }}"
+      register: public_ip_info
+
+    - name: Set public IP address fact
+      ansible.builtin.set_fact:
+        public_ip: "{{ public_ip_info.ansible_facts.azure_rm_publicipaddress.ip_address }}"
+
+    - name: Display the public IP of VM
+      ansible.builtin.debug:
+        msg: "The public IP of the Azure VM is {{ public_ip }}"

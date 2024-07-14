@@ -1,9 +1,9 @@
 ---
 - name: Run nginx container with Podman on Azure VM
   hosts: webserver
-  gather_facts: yes
+  gather_facts: true
   remote_user: adminuser
-  become: yes
+  become: true
   vars:
     container_image: "avrcp2acr.azurecr.io/nginx:cp2"
     container_name: "nginxwebserver"
@@ -17,16 +17,23 @@
         --username "{{ lookup('env', 'CLIENT_ID') }}"
         --password "{{ lookup('env', 'CLIENT_SECRET') }}"
         --tenant "{{ lookup('env', 'TENANT_ID') }}"
+      register: az_login
+      changed_when: az_login.rc != 0
+      failed_when: az_login.rc != 0
 
     - name: Set Azure subscription
       ansible.builtin.command: >
         az account set --subscription "{{ lookup('env', 'SUBSCRIPTION_ID') }}"
-
+      register: az_account_set
+      changed_when: az_account_set.rc != 0
+      failed_when: az_account_set.rc != 0
 
     - name: Get ACR login access token
       ansible.builtin.command: >
         az acr login --name {{ lookup('env', 'ACR_NAME') }} --expose-token
       register: acr_login_result
+      changed_when: acr_login_result.rc != 0
+      failed_when: acr_login_result.rc != 0
 
     - name: Parse ACR login access token
       ansible.builtin.set_fact:
@@ -36,27 +43,19 @@
       ansible.builtin.command: >
         podman login {{ lookup('env', 'ACR_NAME') }}.azurecr.io -u 00000000-0000-0000-0000-000000000000 -p "{{ acr_access_token }}"
       register: login_result
-      ignore_errors: yes
-
-    - name: Fail if login to ACR failed
-      ansible.builtin.fail:
-        msg: "Failed to log in to Azure Container Registry"
-      when: login_result.rc != 0
-
-
+      changed_when: login_result.rc != 0
+      failed_when: login_result.rc != 0
 
     - name: Pull container image from Azure Container Registry
       containers.podman.podman_image:
         name: "{{ container_image }}"
         state: present
       register: pull_result
-      ignore_errors: yes
+      ignore_errors: true
 
     - name: Display pull result
       ansible.builtin.debug:
         var: pull_result
-
-
 
     - name: Run container using Podman with port mapping
       containers.podman.podman_container:
@@ -66,19 +65,17 @@
         publish:
           - "{{ host_port }}:{{ container_port }}"
       register: run_result
-      ignore_errors: yes
+      ignore_errors: true
 
     - name: Debug run result
       ansible.builtin.debug:
         var: run_result
 
-
-
     - name: Check if container nginx is running
       containers.podman.podman_container_info:
         name: "{{ container_name }}"
       register: container_info
-      ignore_errors: yes
+      ignore_errors: true
 
     - name: Set fact if container is running
       ansible.builtin.set_fact:
@@ -87,4 +84,3 @@
     - name: Debug container running status
       ansible.builtin.debug:
         var: container_running
-

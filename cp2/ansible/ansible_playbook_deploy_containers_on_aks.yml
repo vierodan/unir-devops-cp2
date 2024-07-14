@@ -1,10 +1,11 @@
 ---
-- name: Deploy App (back and front) as a Pods to AKS
+- name: Deploy voting app (back and front) to AKS
   hosts: localhost
-  gather_facts: yes
+  gather_facts: true
   vars:
-    aks_cluster_name: "avrcp2aks"
-    deployment_file_path: "~/avr/unir/repo/unir-devops-cp2/cp2/ansible/aks_deployment.yml"  # Full path to the deployment file
+    aks_cluster_name: avrcp2aks
+    deployment_name: voting_app
+    deployment_file_path: ~/avr/unir/repo/unir-devops-cp2/cp2/ansible/aks_deployment.yml
     acr_name: "{{ lookup('env', 'ACR_NAME') }}"
     acr_username: "{{ lookup('env', 'CLIENT_ID') }}"
     acr_password: "{{ lookup('env', 'CLIENT_SECRET') }}"
@@ -17,16 +18,23 @@
         --username "{{ lookup('env', 'CLIENT_ID') }}"
         --password "{{ lookup('env', 'CLIENT_SECRET') }}"
         --tenant "{{ lookup('env', 'TENANT_ID') }}"
+      register: az_login
+      changed_when: az_login.rc != 0
+      failed_when: az_login.rc != 0
 
     - name: Set Azure subscription
       ansible.builtin.command: >
         az account set --subscription "{{ lookup('env', 'SUBSCRIPTION_ID') }}"
-
+      register: azure_subscription
+      changed_when: azure_subscription.rc != 0
+      failed_when: azure_subscription.rc != 0
 
     - name: Get ACR login access token
       ansible.builtin.command: >
         az acr login --name {{ lookup('env', 'ACR_NAME') }} --expose-token
       register: acr_login_result
+      changed_when: acr_login_result.rc != 0
+      failed_when: acr_login_result.rc != 0
 
     - name: Parse ACR login access token
       ansible.builtin.set_fact:
@@ -34,10 +42,17 @@
 
     - name: Get AKS credentials
       ansible.builtin.command: >
-        az aks get-credentials --resource-group "{{ lookup('env', 'RESOURCE_GROUP') }}" --name "{{ aks_cluster_name }}" --overwrite-existing
+        az aks get-credentials
+        --resource-group
+        "{{ lookup('env', 'RESOURCE_GROUP') }}"
+        --name "{{ aks_cluster_name }}"
+        --overwrite-existing
+      register: get_aks_credentials
+      changed_when: get_aks_credentials.rc != 0
+      failed_when: get_aks_credentials.rc != 0
 
     - name: Ensure namespace exists
-      community.kubernetes.k8s:
+      kubernetes.core.k8s:
         state: present
         definition:
           apiVersion: v1
@@ -45,8 +60,16 @@
           metadata:
             name: avrakscp2
 
+    - name: Check if Docker registry secret exists
+      kubernetes.core.k8s_info:
+        kind: Secret
+        namespace: avrakscp2
+        name: acr-secret
+      register: acr_secret_info
+      ignore_errors: true
+
     - name: Create Docker registry secret for ACR
-      ansible.builtin.shell: >
+      ansible.builtin.command: >
         kubectl create secret docker-registry acr-secret
         --docker-server="{{ acr_server }}"
         --docker-username="{{ acr_username }}"
@@ -54,12 +77,31 @@
         --docker-email="vierodan@gmail.com"
         -n avrakscp2
       register: acr_secret_result
+      changed_when: acr_secret_result.rc != 0
+      failed_when: acr_secret_result.rc != 0
+      when: acr_secret_info is failed or acr_secret_info.resources | length == 0
+
+    - name: Check if Kubernetes deployment exists
+      kubernetes.core.k8s_info:
+        kind: Deployment
+        namespace: avrakscp2
+        name: "{{ deployment_name }}"
+      register: deployment_info
       ignore_errors: true
-    
+
     - name: Apply Kubernetes deployment
-      community.kubernetes.k8s:
+      kubernetes.core.k8s:
         state: present
         namespace: avrakscp2
         src: "{{ deployment_file_path }}"
+      when: deployment_info is failed or deployment_info.resources | length == 0
+      register: k8s_apply_result
 
-
+    - name: Update Kubernetes deployment
+      kubernetes.core.k8s:
+        state: present
+        namespace: avrakscp2
+        definition: "{{ lookup('file', deployment_file_path) | from_yaml }}"
+      when: deployment_info is succeeded and deployment_info.resources | length > 0
+      register: k8s_update_result
+    

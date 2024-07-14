@@ -51,7 +51,8 @@
         name: "{{ container_image }}"
         state: present
       register: pull_result
-      ignore_errors: true
+      changed_when: pull_result.rc != 0
+      failed_when: pull_result.rc != 0
 
     - name: Run container using Podman with port mapping
       containers.podman.podman_container:
@@ -61,17 +62,15 @@
         publish:
           - "{{ host_port }}:{{ container_port }}"
       register: run_result
-      ignore_errors: true
-
-    - name: Debug run result
-      ansible.builtin.debug:
-        var: run_result
+      changed_when: run_result.rc != 0
+      failed_when: run_result.rc != 0
 
     - name: Check if container nginx is running
       containers.podman.podman_container_info:
         name: "{{ container_name }}"
       register: container_info
-      ignore_errors: true
+      changed_when: container_info.rc != 0
+      failed_when: container_info.rc != 0
 
     - name: Set fact if container is running
       ansible.builtin.set_fact:

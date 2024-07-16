@@ -80,10 +80,10 @@
 
     - name: Copy voting front image from Microsoft to Azure Container Registry
       ansible.builtin.command: >
-        skopeo copy 
+        skopeo copy
         --override-arch {{ arch }}
         --override-os {{ os }}
-        {{ front_source_image }} 
+        {{ front_source_image }}
         docker://{{ lookup('env', 'ACR_NAME') }}{{ front_destination_image }}
       register: voting_skopeo_copy
       changed_when: voting_skopeo_copy.rc != 0

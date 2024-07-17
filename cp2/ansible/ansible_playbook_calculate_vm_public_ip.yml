@@ -1,5 +1,5 @@
 ---
-- name: Calcupate VM public IP
+- name: ++++++++++ CALCULATE VM PUBLIC IP ++++++++++
   hosts: webserver
   gather_facts: true
 

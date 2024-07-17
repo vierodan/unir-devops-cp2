@@ -1,5 +1,5 @@
 ---
-- name: Calculate AKS public IP
+- name: ++++++++++ CALCULATE AKS PUBLIC IP +++++++++
   hosts: localhost
   gather_facts: true
 

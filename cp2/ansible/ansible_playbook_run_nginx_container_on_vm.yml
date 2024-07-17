@@ -1,5 +1,5 @@
 ---
-- name: Run nginx container with Podman on Azure VM
+- name: ++++++++++ RUN NGINX CONTAINER WITH PODMAN ON AZURE VM ++++++++++
   hosts: webserver
   gather_facts: true
   remote_user: adminuser
@@ -51,8 +51,8 @@
         name: "{{ container_image }}"
         state: present
       register: pull_result
-      changed_when: pull_result.rc != 0
-      failed_when: pull_result.rc != 0
+      changed_when: pull_result.changed == true
+      failed_when: pull_result.stderr is defined and pull_result.stderr != ""
 
     - name: Run container using Podman with port mapping
       containers.podman.podman_container:
@@ -62,15 +62,18 @@
         publish:
           - "{{ host_port }}:{{ container_port }}"
       register: run_result
-      changed_when: run_result.rc != 0
-      failed_when: run_result.rc != 0
+      changed_when: run_result.changed
+      failed_when: run_result.container.State.Status == 'failed'
 
     - name: Check if container nginx is running
       containers.podman.podman_container_info:
         name: "{{ container_name }}"
       register: container_info
-      changed_when: container_info.rc != 0
-      failed_when: container_info.rc != 0
+      changed_when: false  # Esta tarea solo recoge información, no cambia nada
+      failed_when: >-
+        container_info.containers | length == 0 or
+        (container_info.containers | map(attribute='State') | map(attribute='Status') | first) != 'running'
+
 
     - name: Set fact if container is running
       ansible.builtin.set_fact:

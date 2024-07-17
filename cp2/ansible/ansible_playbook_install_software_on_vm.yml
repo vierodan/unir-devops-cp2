@@ -1,5 +1,5 @@
 ---
-- name: Install Software on Azure VM
+- name: ++++++++++ INSTALL SOFTWARE ON AZURE VM ++++++++++
   hosts: webserver
   gather_facts: true
   remote_user: adminuser

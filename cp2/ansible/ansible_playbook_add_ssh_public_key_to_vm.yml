@@ -1,5 +1,5 @@
 ---
-- name: Add SSH public key to Azure VM
+- name: ++++++++++ ADD SSH PUBLIC KEY TO AZURE VM ++++++++++
   hosts: localhost
   gather_facts: true
 

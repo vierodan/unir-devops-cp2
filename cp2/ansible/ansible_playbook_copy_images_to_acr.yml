@@ -1,5 +1,5 @@
 ---
-- name: Deploy images to Azure Container Registry
+- name: ++++++++++ DEPLOY IMAGES TO AZURE CONTAINER REGISTRY (ACR) ++++++++++
   hosts: localhost
   gather_facts: true
   vars:

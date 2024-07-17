@@ -1,5 +1,5 @@
 ---
-- name: Deploy voting app (back and front) to AKS
+- name: ++++++++++ DEPLOY VOTING APP (BACKEND & FRONTEND) to AKS ++++++++++
   hosts: localhost
   gather_facts: true
   vars:
@@ -104,4 +104,3 @@
         definition: "{{ lookup('file', deployment_file_path) | from_yaml }}"
       when: deployment_info is succeeded and deployment_info.resources | length > 0
       register: k8s_update_result
-    

@@ -12,6 +12,12 @@
     acr_server: "{{ acr_name }}.azurecr.io"
 
   tasks:
+    - name: Ensure login to Azure
+      azure.azcollection.azure_rm_resourcegroup_info:
+        subscription_id: "{{ lookup('env', 'SUBSCRIPTION_ID') }}"
+      register: azure_rg_info
+      ignore_errors: true
+
     - name: Login to Azure CLI
       ansible.builtin.command: >
         az login --service-principal
@@ -21,13 +27,28 @@
       register: az_login
       changed_when: az_login.rc != 0
       failed_when: az_login.rc != 0
+      when: azure_rg_info.failed
 
     - name: Set Azure subscription
       ansible.builtin.command: >
-        az account set --subscription "{{ lookup('env', 'SUBSCRIPTION_ID') }}"
+        az account set
+        --subscription
+        "{{ lookup('env', 'SUBSCRIPTION_ID') }}"
       register: azure_subscription
       changed_when: azure_subscription.rc != 0
       failed_when: azure_subscription.rc != 0
+      when: azure_rg_info.failed
+
+    - name: Veryfy login process
+      azure.azcollection.azure_rm_resourcegroup_info:
+        subscription_id: "{{ lookup('env', 'SUBSCRIPTION_ID') }}"
+      register: azure_rg_info_post_login
+      ignore_errors: true
+
+    - name: Fails if no login
+      ansible.builtin.fail:
+        msg: "No se pudo autenticar en Azure. Por favor, verifica tus credenciales."
+      when: azure_rg_info_post_login.failed
 
     - name: Get ACR login access token
       ansible.builtin.command: >

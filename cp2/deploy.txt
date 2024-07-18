@@ -1,0 +1,752 @@
+[0m[1mInitializing the backend...[0m
+[0m[1mInitializing provider plugins...[0m
+- Reusing previous version of hashicorp/azurerm from the dependency lock file
+- Reusing previous version of hashicorp/local from the dependency lock file
+- Using previously-installed hashicorp/azurerm v3.110.0
+- Using previously-installed hashicorp/local v2.5.1
+
+[0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+[0m[32m
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.[0m
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+
+Terraform will perform the following actions:
+
+[1m  # azurerm_availability_set.aas[0m will be created
+[0m  [32m+[0m[0m resource "azurerm_availability_set" "aas" {
+      [32m+[0m[0m id                           = (known after apply)
+      [32m+[0m[0m location                     = "westeurope"
+      [32m+[0m[0m managed                      = true
+      [32m+[0m[0m name                         = "avrcp2aas"
+      [32m+[0m[0m platform_fault_domain_count  = 2
+      [32m+[0m[0m platform_update_domain_count = 2
+      [32m+[0m[0m resource_group_name          = "avrcp2arg"
+      [32m+[0m[0m tags                         = {
+          [32m+[0m[0m "environment" = "development"
+          [32m+[0m[0m "project"     = "cp2"
+        }
+    }
+
+[1m  # azurerm_container_registry.acr[0m will be created
+[0m  [32m+[0m[0m resource "azurerm_container_registry" "acr" {
+      [32m+[0m[0m admin_enabled                 = true
+      [32m+[0m[0m admin_password                = (sensitive value)
+      [32m+[0m[0m admin_username                = (known after apply)
+      [32m+[0m[0m encryption                    = (known after apply)
+      [32m+[0m[0m export_policy_enabled         = true
+      [32m+[0m[0m id                            = (known after apply)
+      [32m+[0m[0m location                      = "westeurope"
+      [32m+[0m[0m login_server                  = (known after apply)
+      [32m+[0m[0m name                          = "avrcp2acr"
+      [32m+[0m[0m network_rule_bypass_option    = "AzureServices"
+      [32m+[0m[0m network_rule_set              = (known after apply)
+      [32m+[0m[0m public_network_access_enabled = true
+      [32m+[0m[0m resource_group_name           = "avrcp2arg"
+      [32m+[0m[0m retention_policy              = (known after apply)
+      [32m+[0m[0m sku                           = "Basic"
+      [32m+[0m[0m tags                          = {
+          [32m+[0m[0m "environment" = "development"
+          [32m+[0m[0m "project"     = "cp2"
+        }
+      [32m+[0m[0m trust_policy                  = (known after apply)
+      [32m+[0m[0m zone_redundancy_enabled       = false
+    }
+
+[1m  # azurerm_kubernetes_cluster.aks[0m will be created
+[0m  [32m+[0m[0m resource "azurerm_kubernetes_cluster" "aks" {
+      [32m+[0m[0m api_server_authorized_ip_ranges     = (known after apply)
+      [32m+[0m[0m current_kubernetes_version          = (known after apply)
+      [32m+[0m[0m dns_prefix                          = "avrcp2aks"
+      [32m+[0m[0m fqdn                                = (known after apply)
+      [32m+[0m[0m http_application_routing_zone_name  = (known after apply)
+      [32m+[0m[0m id                                  = (known after apply)
+      [32m+[0m[0m image_cleaner_enabled               = false
+      [32m+[0m[0m image_cleaner_interval_hours        = 48
+      [32m+[0m[0m kube_admin_config                   = (sensitive value)
+      [32m+[0m[0m kube_admin_config_raw               = (sensitive value)
+      [32m+[0m[0m kube_config                         = (sensitive value)
+      [32m+[0m[0m kube_config_raw                     = (sensitive value)
+      [32m+[0m[0m kubernetes_version                  = "1.28.9"
+      [32m+[0m[0m location                            = "ukwest"
+      [32m+[0m[0m name                                = "avrcp2aks"
+      [32m+[0m[0m node_resource_group                 = (known after apply)
+      [32m+[0m[0m node_resource_group_id              = (known after apply)
+      [32m+[0m[0m oidc_issuer_url                     = (known after apply)
+      [32m+[0m[0m portal_fqdn                         = (known after apply)
+      [32m+[0m[0m private_cluster_enabled             = false
+      [32m+[0m[0m private_cluster_public_fqdn_enabled = false
+      [32m+[0m[0m private_dns_zone_id                 = (known after apply)
+      [32m+[0m[0m private_fqdn                        = (known after apply)
+      [32m+[0m[0m public_network_access_enabled       = true
+      [32m+[0m[0m resource_group_name                 = "avrcp2arg"
+      [32m+[0m[0m role_based_access_control_enabled   = true
+      [32m+[0m[0m run_command_enabled                 = true
+      [32m+[0m[0m sku_tier                            = "Free"
+      [32m+[0m[0m support_plan                        = "KubernetesOfficial"
+      [32m+[0m[0m tags                                = {
+          [32m+[0m[0m "environment" = "development"
+          [32m+[0m[0m "project"     = "cp2"
+        }
+      [32m+[0m[0m workload_identity_enabled           = false
+
+      [32m+[0m[0m api_server_access_profile (known after apply)
+
+      [32m+[0m[0m auto_scaler_profile (known after apply)
+
+      [32m+[0m[0m default_node_pool {
+          [32m+[0m[0m kubelet_disk_type    = (known after apply)
+          [32m+[0m[0m max_pods             = (known after apply)
+          [32m+[0m[0m name                 = "default"
+          [32m+[0m[0m node_count           = 1
+          [32m+[0m[0m node_labels          = (known after apply)
+          [32m+[0m[0m orchestrator_version = (known after apply)
+          [32m+[0m[0m os_disk_size_gb      = (known after apply)
+          [32m+[0m[0m os_disk_type         = "Managed"
+          [32m+[0m[0m os_sku               = (known after apply)
+          [32m+[0m[0m scale_down_mode      = "Delete"
+          [32m+[0m[0m type                 = "VirtualMachineScaleSets"
+          [32m+[0m[0m ultra_ssd_enabled    = false
+          [32m+[0m[0m vm_size              = "Standard_B2s"
+          [32m+[0m[0m workload_runtime     = (known after apply)
+        }
+
+      [32m+[0m[0m identity {
+          [32m+[0m[0m principal_id = (known after apply)
+          [32m+[0m[0m tenant_id    = (known after apply)
+          [32m+[0m[0m type         = "SystemAssigned"
+        }
+
+      [32m+[0m[0m kubelet_identity (known after apply)
+
+      [32m+[0m[0m network_profile {
+          [32m+[0m[0m dns_service_ip          = (known after apply)
+          [32m+[0m[0m docker_bridge_cidr      = (known after apply)
+          [32m+[0m[0m ebpf_data_plane         = (known after apply)
+          [32m+[0m[0m ip_versions             = (known after apply)
+          [32m+[0m[0m load_balancer_sku       = "basic"
+          [32m+[0m[0m network_data_plane      = (known after apply)
+          [32m+[0m[0m network_mode            = (known after apply)
+          [32m+[0m[0m network_plugin          = "azure"
+          [32m+[0m[0m network_policy          = (known after apply)
+          [32m+[0m[0m outbound_ip_address_ids = (known after apply)
+          [32m+[0m[0m outbound_ip_prefix_ids  = (known after apply)
+          [32m+[0m[0m outbound_type           = "loadBalancer"
+          [32m+[0m[0m pod_cidr                = (known after apply)
+          [32m+[0m[0m pod_cidrs               = (known after apply)
+          [32m+[0m[0m service_cidr            = (known after apply)
+          [32m+[0m[0m service_cidrs           = (known after apply)
+
+          [32m+[0m[0m load_balancer_profile (known after apply)
+
+          [32m+[0m[0m nat_gateway_profile (known after apply)
+        }
+
+      [32m+[0m[0m windows_profile (known after apply)
+    }
+
+[1m  # azurerm_linux_virtual_machine.avml[0m will be created
+[0m  [32m+[0m[0m resource "azurerm_linux_virtual_machine" "avml" {
+      [32m+[0m[0m admin_password                                         = (sensitive value)
+      [32m+[0m[0m admin_username                                         = "adminuser"
+      [32m+[0m[0m allow_extension_operations                             = true
+      [32m+[0m[0m availability_set_id                                    = (known after apply)
+      [32m+[0m[0m bypass_platform_safety_checks_on_user_schedule_enabled = false
+      [32m+[0m[0m computer_name                                          = "ubuntu22linuxvm"
+      [32m+[0m[0m disable_password_authentication                        = false
+      [32m+[0m[0m disk_controller_type                                   = (known after apply)
+      [32m+[0m[0m extensions_time_budget                                 = "PT1H30M"
+      [32m+[0m[0m id                                                     = (known after apply)
+      [32m+[0m[0m location                                               = "westeurope"
+      [32m+[0m[0m max_bid_price                                          = -1
+      [32m+[0m[0m name                                                   = "avrcp2vml"
+      [32m+[0m[0m network_interface_ids                                  = (known after apply)
+      [32m+[0m[0m patch_assessment_mode                                  = "ImageDefault"
+      [32m+[0m[0m patch_mode                                             = "ImageDefault"
+      [32m+[0m[0m platform_fault_domain                                  = -1
+      [32m+[0m[0m priority                                               = "Regular"
+      [32m+[0m[0m private_ip_address                                     = (known after apply)
+      [32m+[0m[0m private_ip_addresses                                   = (known after apply)
+      [32m+[0m[0m provision_vm_agent                                     = true
+      [32m+[0m[0m public_ip_address                                      = (known after apply)
+      [32m+[0m[0m public_ip_addresses                                    = (known after apply)
+      [32m+[0m[0m resource_group_name                                    = "avrcp2arg"
+      [32m+[0m[0m size                                                   = "Standard_B1s"
+      [32m+[0m[0m tags                                                   = {
+          [32m+[0m[0m "environment" = "development"
+          [32m+[0m[0m "project"     = "cp2"
+        }
+      [32m+[0m[0m virtual_machine_id                                     = (known after apply)
+      [32m+[0m[0m vm_agent_platform_updates_enabled                      = false
+
+      [32m+[0m[0m os_disk {
+          [32m+[0m[0m caching                   = "ReadWrite"
+          [32m+[0m[0m disk_size_gb              = (known after apply)
+          [32m+[0m[0m name                      = "linux-os-disk"
+          [32m+[0m[0m storage_account_type      = "Standard_LRS"
+          [32m+[0m[0m write_accelerator_enabled = false
+        }
+
+      [32m+[0m[0m source_image_reference {
+          [32m+[0m[0m offer     = "0001-com-ubuntu-server-jammy"
+          [32m+[0m[0m publisher = "Canonical"
+          [32m+[0m[0m sku       = "22_04-lts-gen2"
+          [32m+[0m[0m version   = "latest"
+        }
+
+      [32m+[0m[0m termination_notification (known after apply)
+    }
+
+[1m  # azurerm_network_interface.ani[0m will be created
+[0m  [32m+[0m[0m resource "azurerm_network_interface" "ani" {
+      [32m+[0m[0m accelerated_networking_enabled = (known after apply)
+      [32m+[0m[0m applied_dns_servers            = (known after apply)
+      [32m+[0m[0m dns_servers                    = (known after apply)
+      [32m+[0m[0m enable_accelerated_networking  = (known after apply)
+      [32m+[0m[0m enable_ip_forwarding           = (known after apply)
+      [32m+[0m[0m id                             = (known after apply)
+      [32m+[0m[0m internal_domain_name_suffix    = (known after apply)
+      [32m+[0m[0m ip_forwarding_enabled          = (known after apply)
+      [32m+[0m[0m location                       = "westeurope"
+      [32m+[0m[0m mac_address                    = (known after apply)
+      [32m+[0m[0m name                           = "avrcp2ani"
+      [32m+[0m[0m private_ip_address             = (known after apply)
+      [32m+[0m[0m private_ip_addresses           = (known after apply)
+      [32m+[0m[0m resource_group_name            = "avrcp2arg"
+      [32m+[0m[0m tags                           = {
+          [32m+[0m[0m "environment" = "development"
+          [32m+[0m[0m "project"     = "cp2"
+        }
+      [32m+[0m[0m virtual_machine_id             = (known after apply)
+
+      [32m+[0m[0m ip_configuration {
+          [32m+[0m[0m gateway_load_balancer_frontend_ip_configuration_id = (known after apply)
+          [32m+[0m[0m name                                               = "internal"
+          [32m+[0m[0m primary                                            = (known after apply)
+          [32m+[0m[0m private_ip_address                                 = (known after apply)
+          [32m+[0m[0m private_ip_address_allocation                      = "Dynamic"
+          [32m+[0m[0m private_ip_address_version                         = "IPv4"
+          [32m+[0m[0m public_ip_address_id                               = (known after apply)
+          [32m+[0m[0m subnet_id                                          = (known after apply)
+        }
+    }
+
+[1m  # azurerm_network_interface_security_group_association.anisga[0m will be created
+[0m  [32m+[0m[0m resource "azurerm_network_interface_security_group_association" "anisga" {
+      [32m+[0m[0m id                        = (known after apply)
+      [32m+[0m[0m network_interface_id      = (known after apply)
+      [32m+[0m[0m network_security_group_id = (known after apply)
+    }
+
+[1m  # azurerm_network_security_group.ansg[0m will be created
+[0m  [32m+[0m[0m resource "azurerm_network_security_group" "ansg" {
+      [32m+[0m[0m id                  = (known after apply)
+      [32m+[0m[0m location            = "westeurope"
+      [32m+[0m[0m name                = "avrcp2ansg"
+      [32m+[0m[0m resource_group_name = "avrcp2arg"
+      [32m+[0m[0m security_rule       = [
+          [32m+[0m[0m {
+              [32m+[0m[0m access                                     = "Allow"
+              [32m+[0m[0m destination_address_prefix                 = "*"
+              [32m+[0m[0m destination_address_prefixes               = []
+              [32m+[0m[0m destination_application_security_group_ids = []
+              [32m+[0m[0m destination_port_range                     = "22"
+              [32m+[0m[0m destination_port_ranges                    = []
+              [32m+[0m[0m direction                                  = "Inbound"
+              [32m+[0m[0m name                                       = "SSH"
+              [32m+[0m[0m priority                                   = 1001
+              [32m+[0m[0m protocol                                   = "Tcp"
+              [32m+[0m[0m source_address_prefix                      = "*"
+              [32m+[0m[0m source_address_prefixes                    = []
+              [32m+[0m[0m source_application_security_group_ids      = []
+              [32m+[0m[0m source_port_range                          = "*"
+              [32m+[0m[0m source_port_ranges                         = []
+                [90m# (1 unchanged attribute hidden)[0m[0m
+            },
+          [32m+[0m[0m {
+              [32m+[0m[0m access                                     = "Allow"
+              [32m+[0m[0m destination_address_prefix                 = "*"
+              [32m+[0m[0m destination_address_prefixes               = []
+              [32m+[0m[0m destination_application_security_group_ids = []
+              [32m+[0m[0m destination_port_range                     = "80"
+              [32m+[0m[0m destination_port_ranges                    = []
+              [32m+[0m[0m direction                                  = "Inbound"
+              [32m+[0m[0m name                                       = "HTTP"
+              [32m+[0m[0m priority                                   = 1002
+              [32m+[0m[0m protocol                                   = "Tcp"
+              [32m+[0m[0m source_address_prefix                      = "*"
+              [32m+[0m[0m source_address_prefixes                    = []
+              [32m+[0m[0m source_application_security_group_ids      = []
+              [32m+[0m[0m source_port_range                          = "*"
+              [32m+[0m[0m source_port_ranges                         = []
+                [90m# (1 unchanged attribute hidden)[0m[0m
+            },
+        ]
+      [32m+[0m[0m tags                = {
+          [32m+[0m[0m "environment" = "development"
+          [32m+[0m[0m "project"     = "cp2"
+        }
+    }
+
+[1m  # azurerm_public_ip.apip[0m will be created
+[0m  [32m+[0m[0m resource "azurerm_public_ip" "apip" {
+      [32m+[0m[0m allocation_method       = "Static"
+      [32m+[0m[0m ddos_protection_mode    = "VirtualNetworkInherited"
+      [32m+[0m[0m fqdn                    = (known after apply)
+      [32m+[0m[0m id                      = (known after apply)
+      [32m+[0m[0m idle_timeout_in_minutes = 4
+      [32m+[0m[0m ip_address              = (known after apply)
+      [32m+[0m[0m ip_version              = "IPv4"
+      [32m+[0m[0m location                = "westeurope"
+      [32m+[0m[0m name                    = "avrcp2apip"
+      [32m+[0m[0m resource_group_name     = "avrcp2arg"
+      [32m+[0m[0m sku                     = "Basic"
+      [32m+[0m[0m sku_tier                = "Regional"
+      [32m+[0m[0m tags                    = {
+          [32m+[0m[0m "environment" = "development"
+          [32m+[0m[0m "project"     = "cp2"
+        }
+    }
+
+[1m  # azurerm_resource_group.arg[0m will be created
+[0m  [32m+[0m[0m resource "azurerm_resource_group" "arg" {
+      [32m+[0m[0m id       = (known after apply)
+      [32m+[0m[0m location = "westeurope"
+      [32m+[0m[0m name     = "avrcp2arg"
+      [32m+[0m[0m tags     = {
+          [32m+[0m[0m "environment" = "development"
+          [32m+[0m[0m "project"     = "cp2"
+        }
+    }
+
+[1m  # azurerm_subnet.asn[0m will be created
+[0m  [32m+[0m[0m resource "azurerm_subnet" "asn" {
+      [32m+[0m[0m address_prefixes                               = [
+          [32m+[0m[0m "10.0.1.0/24",
+        ]
+      [32m+[0m[0m default_outbound_access_enabled                = true
+      [32m+[0m[0m enforce_private_link_endpoint_network_policies = (known after apply)
+      [32m+[0m[0m enforce_private_link_service_network_policies  = (known after apply)
+      [32m+[0m[0m id                                             = (known after apply)
+      [32m+[0m[0m name                                           = "avrcp2asn"
+      [32m+[0m[0m private_endpoint_network_policies              = (known after apply)
+      [32m+[0m[0m private_endpoint_network_policies_enabled      = (known after apply)
+      [32m+[0m[0m private_link_service_network_policies_enabled  = (known after apply)
+      [32m+[0m[0m resource_group_name                            = "avrcp2arg"
+      [32m+[0m[0m virtual_network_name                           = "avrcp2avn"
+    }
+
+[1m  # azurerm_virtual_network.avn[0m will be created
+[0m  [32m+[0m[0m resource "azurerm_virtual_network" "avn" {
+      [32m+[0m[0m address_space       = [
+          [32m+[0m[0m "10.0.0.0/16",
+        ]
+      [32m+[0m[0m dns_servers         = (known after apply)
+      [32m+[0m[0m guid                = (known after apply)
+      [32m+[0m[0m id                  = (known after apply)
+      [32m+[0m[0m location            = "westeurope"
+      [32m+[0m[0m name                = "avrcp2avn"
+      [32m+[0m[0m resource_group_name = "avrcp2arg"
+      [32m+[0m[0m subnet              = (known after apply)
+      [32m+[0m[0m tags                = {
+          [32m+[0m[0m "environment" = "development"
+          [32m+[0m[0m "project"     = "cp2"
+        }
+    }
+
+[1m  # local_file.ansible_inventory[0m will be created
+[0m  [32m+[0m[0m resource "local_file" "ansible_inventory" {
+      [32m+[0m[0m content              = (known after apply)
+      [32m+[0m[0m content_base64sha256 = (known after apply)
+      [32m+[0m[0m content_base64sha512 = (known after apply)
+      [32m+[0m[0m content_md5          = (known after apply)
+      [32m+[0m[0m content_sha1         = (known after apply)
+      [32m+[0m[0m content_sha256       = (known after apply)
+      [32m+[0m[0m content_sha512       = (known after apply)
+      [32m+[0m[0m directory_permission = "0777"
+      [32m+[0m[0m file_permission      = "0777"
+      [32m+[0m[0m filename             = "../ansible/ansible_inventory_vm.ini"
+      [32m+[0m[0m id                   = (known after apply)
+    }
+
+[1mPlan:[0m 12 to add, 0 to change, 0 to destroy.
+[0m
+Changes to Outputs:
+  [32m+[0m[0m admin_username             = "adminuser"
+  [32m+[0m[0m azurerm_acr_admin_password = (sensitive value)
+  [32m+[0m[0m azurerm_acr_admin_username = (known after apply)
+  [32m+[0m[0m azurerm_acr_login_server   = (known after apply)
+  [32m+[0m[0m kube_config                = (sensitive value)
+  [32m+[0m[0m resource_group_name        = "avrcp2arg"
+  [32m+[0m[0m virtual_machine_public_ip  = (known after apply)
+[90m
+─────────────────────────────────────────────────────────────────────────────[0m
+
+Saved the plan to: tfplan
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "tfplan"
+[0m[1mazurerm_resource_group.arg: Creating...[0m[0m
+[0m[1mazurerm_resource_group.arg: Creation complete after 10s [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg][0m
+[0m[1mazurerm_availability_set.aas: Creating...[0m[0m
+[0m[1mazurerm_container_registry.acr: Creating...[0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Creating...[0m[0m
+[0m[1mazurerm_availability_set.aas: Creation complete after 2s [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Compute/availabilitySets/avrcp2aas][0m
+[0m[1mazurerm_virtual_network.avn: Creating...[0m[0m
+[0m[1mazurerm_public_ip.apip: Creating...[0m[0m
+[0m[1mazurerm_network_security_group.ansg: Creating...[0m[0m
+[0m[1mazurerm_public_ip.apip: Creation complete after 3s [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/publicIPAddresses/avrcp2apip][0m
+[0m[1mlocal_file.ansible_inventory: Creating...[0m[0m
+[0m[1mlocal_file.ansible_inventory: Creation complete after 0s [id=458acff4e0b9a588ca6aad702cd2c3fd7188098d][0m
+[0m[1mazurerm_network_security_group.ansg: Creation complete after 3s [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/networkSecurityGroups/avrcp2ansg][0m
+[0m[1mazurerm_virtual_network.avn: Creation complete after 5s [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/virtualNetworks/avrcp2avn][0m
+[0m[1mazurerm_subnet.asn: Creating...[0m[0m
+[0m[1mazurerm_container_registry.acr: Still creating... [10s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [10s elapsed][0m[0m
+[0m[1mazurerm_subnet.asn: Creation complete after 6s [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/virtualNetworks/avrcp2avn/subnets/avrcp2asn][0m
+[0m[1mazurerm_network_interface.ani: Creating...[0m[0m
+[0m[1mazurerm_container_registry.acr: Still creating... [20s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [20s elapsed][0m[0m
+[0m[1mazurerm_network_interface.ani: Still creating... [10s elapsed][0m[0m
+[0m[1mazurerm_network_interface.ani: Creation complete after 12s [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/networkInterfaces/avrcp2ani][0m
+[0m[1mazurerm_network_interface_security_group_association.anisga: Creating...[0m[0m
+[0m[1mazurerm_linux_virtual_machine.avml: Creating...[0m[0m
+[0m[1mazurerm_container_registry.acr: Creation complete after 28s [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.ContainerRegistry/registries/avrcp2acr][0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [30s elapsed][0m[0m
+[0m[1mazurerm_network_interface_security_group_association.anisga: Still creating... [10s elapsed][0m[0m
+[0m[1mazurerm_linux_virtual_machine.avml: Still creating... [10s elapsed][0m[0m
+[0m[1mazurerm_network_interface_security_group_association.anisga: Creation complete after 13s [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/networkInterfaces/avrcp2ani|/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/networkSecurityGroups/avrcp2ansg][0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [40s elapsed][0m[0m
+[0m[1mazurerm_linux_virtual_machine.avml: Still creating... [20s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [50s elapsed][0m[0m
+[0m[1mazurerm_linux_virtual_machine.avml: Still creating... [30s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [1m0s elapsed][0m[0m
+[0m[1mazurerm_linux_virtual_machine.avml: Still creating... [40s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [1m10s elapsed][0m[0m
+[0m[1mazurerm_linux_virtual_machine.avml: Still creating... [50s elapsed][0m[0m
+[0m[1mazurerm_linux_virtual_machine.avml: Creation complete after 50s [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Compute/virtualMachines/avrcp2vml][0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [1m20s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [1m30s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [1m40s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [1m50s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [2m0s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [2m10s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [2m20s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [2m30s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [2m40s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [2m50s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [3m0s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [3m10s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [3m20s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still creating... [3m30s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Creation complete after 3m36s [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.ContainerService/managedClusters/avrcp2aks][0m
+[0m[1m[32m
+Apply complete! Resources: 12 added, 0 changed, 0 destroyed.
+[0m[0m[1m[32m
+Outputs:
+
+[0madmin_username = "adminuser"
+azurerm_acr_admin_password = <sensitive>
+azurerm_acr_admin_username = "avrcp2acr"
+azurerm_acr_login_server = "avrcp2acr.azurecr.io"
+kube_config = <sensitive>
+resource_group_name = "avrcp2arg"
+virtual_machine_public_ip = "20.71.118.68"
+
+PLAY [++++++++++ DEPLOY IMAGES TO AZURE CONTAINER REGISTRY (ACR) ++++++++++] ***
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [Ensure login to Azure] ***************************************************
+ok: [localhost]
+
+TASK [Login to Azure CLI] ******************************************************
+skipping: [localhost]
+
+TASK [Set Azure subscription] **************************************************
+skipping: [localhost]
+
+TASK [Veryfy login process] ****************************************************
+ok: [localhost]
+
+TASK [Fails if no login] *******************************************************
+skipping: [localhost]
+
+TASK [Get ACR login access token] **********************************************
+ok: [localhost]
+
+TASK [Parse ACR login access token] ********************************************
+ok: [localhost]
+
+TASK [Log in to Azure Container Registry with Podman using access token] *******
+ok: [localhost]
+
+TASK [Copy nginx from Docker to Azure Container Registry] **********************
+ok: [localhost]
+
+TASK [Display Skopeo copy result for nginx] ************************************
+ok: [localhost] => {
+    "nginx_skopeo_copy.stdout_lines": [
+        "Getting image source signatures",
+        "Copying blob sha256:c6b156574604a095a5847d3b34cf36d484bb49862365e996b391d0ba0f345034",
+        "Copying blob sha256:ea5d7144c337402f813ea7c05c11dab58b7841f4c41fb5f5058abefbc2451ec5",
+        "Copying blob sha256:f11c1adaa26e078479ccdd45312ea3b88476441b91be0ec898a7e07bfd05badc",
+        "Copying blob sha256:537a6cfe3404285310129c72dfc3f352e7c5db1a5f296e514d739322bab5a998",
+        "Copying blob sha256:767bff2cc03ef46478039907c5bca487eb27d5f43a38571985e4ed4dc0403d5a",
+        "Copying blob sha256:1bbcb9df2c93e03db739f7e49ce73eda0325b8087ef8e88386d303d883c357ab",
+        "Copying blob sha256:adc73cb74f2591613c7c88f7f6a313c3373bbfa3bda0983677bb233668b4033a",
+        "Copying config sha256:fffffc90d343cbcb01a5032edac86db5998c536cd0a366514121a45c6723765c",
+        "Writing manifest to image destination"
+    ]
+}
+
+TASK [Copy redis image from Microsoft to Azure Container Registry] *************
+ok: [localhost]
+
+TASK [Display Skopeo copy result for redis] ************************************
+ok: [localhost] => {
+    "redis_skopeo_copy.stdout_lines": [
+        "Getting image source signatures",
+        "Copying blob sha256:bf887c7f6b15a2a511d436ca6dc48f7752b5a93f767aa45173abfea3b5d0c311",
+        "Copying blob sha256:4e934f6d99d29395b4299fc782bc35979f1b91d351298d370a0c77534d6f70dd",
+        "Copying blob sha256:476959f86aedd64d1e71546c250b24e5495938dd30b29969397caca9bd3cdade",
+        "Copying blob sha256:e9439c5c5ef5914f825ce379cc18a3875c42c51c6d5ddf5c9c78ae1385a3f5b8",
+        "Copying blob sha256:58212c1109c5214ba5c4c3ef9e785b56bae9223d58defae23919896e0ecac644",
+        "Copying blob sha256:e33ec5243c547f6a56f39bcf9572e16d2c91b5b7ee180a4ac572c6d863bf1177",
+        "Copying blob sha256:9f99ff6b922fd89284aa8e071dc4461ded4177a06769bc167d7275a076aac8a3",
+        "Copying blob sha256:0972949636578135fa3ac5a6e8f9ab623065e100aa58f696218b7dcd9ef85955",
+        "Copying blob sha256:919efe137172a7c5a816f4b72923c87df8bad22b4c8033cd87a066c3f23c67f3",
+        "Copying blob sha256:b3346fcea345ebd77aa487347e87f96730da7a17165b8078a44fb3fbcc2ad80f",
+        "Copying blob sha256:3bb7743413aaf8678dfe62b65c93213e51c3b27723586b2ff16faf3adfc2a591",
+        "Copying config sha256:3a54a920bb6c7127f700c2fe722f8f6dc3e2a7c6d5b917775104669bdf76d572",
+        "Writing manifest to image destination"
+    ]
+}
+
+TASK [Copy voting front image from Microsoft to Azure Container Registry] ******
+ok: [localhost]
+
+TASK [Display Skopeo copy result for voting front] *****************************
+ok: [localhost] => {
+    "voting_skopeo_copy.stdout_lines": [
+        "Getting image source signatures",
+        "Copying blob sha256:fe27feb3d50932bb7ed027555b8206b3e35d98ab2dcc04ae34cafe76f8587be9",
+        "Copying blob sha256:409a28e3cc3de08700c9d37c809a6d3aa43dc076402943919f4a78c286c60a0b",
+        "Copying blob sha256:0f46f97746e4df5959e8c821ca69fdd6c0bedd611c1e0ab3b6970f7202b9bb10",
+        "Copying blob sha256:abe15a44e12f84b4aac20d4f2b450ec8638cc0b176c9130d1802cb4fed17d953",
+        "Copying blob sha256:723254a2c089166d4bcfa917be0181ddbecd94971ebfe85792d96e7e29be9c68",
+        "Copying blob sha256:50316693559041b3c6895bce352b10c302f31c074495671a820b689d2ce12baa",
+        "Copying blob sha256:f58221128c68a42454020cac17ef1a1b1ce42dcdccd6e32fa106a7a086d6c1fd",
+        "Copying blob sha256:cbbd266a0ce4607e55433d6650376167a10f85387f2079a5945d2452a44490d7",
+        "Copying blob sha256:011f9871f258a8f6eb04a548eaf9b81e65d37c9773b2e1525ec37bea17bd51e9",
+        "Copying blob sha256:7944d6552805881a120320e58806a7d6b0664d7aa352fac1124f9facdab75a88",
+        "Copying blob sha256:106e7fdad1c3d0799fd75ce34137a627dc4046812ff73c8ddd9b7bc34b780765",
+        "Copying blob sha256:4ccbaf15188fdeef2330e9bc6fa355a9215ff9705b0d0b178b576a1a69c7bd19",
+        "Copying blob sha256:96b847b3920ff57d74293be8d6b207c553483747ebc4f49f8a897224ac31d063",
+        "Copying blob sha256:b0b45914dc808ab025e86ee0e55156606cd0ade324ad30ecbedad11c342cd6d2",
+        "Copying blob sha256:9775a229a533cc4980d7f561c7837e4e058f3069a01ea2b3622e87c94e921d67",
+        "Copying blob sha256:16389749bc89861738017cca636cbdf108bddfc0c21725f6673311a7a5a78231",
+        "Copying blob sha256:57aab84ddd602fca2ee147a13eb9421a3c41a8102cd4f5252ab10aa5ec76bccf",
+        "Copying blob sha256:f5292f1c639b5f221573339475605d0963d4cec445abe8b7d2bdf80cc932373a",
+        "Copying blob sha256:399bec1e24515a70e3194e00e5a8edad5dc8db6c49772a598af9cd70d3646e38",
+        "Copying blob sha256:efe33c575dfaf49bb4d5cbfb80115744bbbe9b8337b9b5f5df726fb88dbad516",
+        "Copying blob sha256:650dba66420ae82df7285a88d1cbe5c4b0ad5bc1bc72b68d1f357a2b2724e0b5",
+        "Copying blob sha256:2e5210054dc2921733414403cbbf46afc16c8503b1d5bab50de90b999a3e0b52",
+        "Copying blob sha256:f316c44a16f2d39ae17333db7154af5df88655bc73a6ec930f978a1d557f0269",
+        "Copying blob sha256:ece51b73bad1e8e8924ff64029845380cb1d583fbf492f02aa94af1cd1700e17",
+        "Copying blob sha256:23608bed61b2ee6f8bb862499bd15da17e74934b95ec53b69ea006024004de93",
+        "Copying blob sha256:03343c7db0dc589d3df0a83a44f2d3710d6772a7d679458b3193c95bea225b2e",
+        "Copying blob sha256:78cff7605725ce464b585df821a22b7fdfb64c45f30b04bf88e434629c65058b",
+        "Copying blob sha256:0220087af291707d848dd5912550a3e4533d674ed382bdfea012895839f8ba39",
+        "Copying blob sha256:44403a9040c38783044d8c08ae1ab3831f65f35afc3d9746f0a11e8dfc0eec25",
+        "Copying config sha256:4d4d08c256777f118ee68722ce0bd169c2fb3f63d576416b0e356f8fa3c3c49e",
+        "Writing manifest to image destination"
+    ]
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=12   changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+
+
+PLAY [++++++++++ DEPLOY VOTING APP (BACKEND & FRONTEND) to AKS ++++++++++] *****
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [Ensure login to Azure] ***************************************************
+ok: [localhost]
+
+TASK [Login to Azure CLI] ******************************************************
+skipping: [localhost]
+
+TASK [Set Azure subscription] **************************************************
+skipping: [localhost]
+
+TASK [Veryfy login process] ****************************************************
+ok: [localhost]
+
+TASK [Fails if no login] *******************************************************
+skipping: [localhost]
+
+TASK [Get ACR login access token] **********************************************
+ok: [localhost]
+
+TASK [Parse ACR login access token] ********************************************
+ok: [localhost]
+
+TASK [Get AKS credentials] *****************************************************
+ok: [localhost]
+
+TASK [Ensure namespace exists] *************************************************
+changed: [localhost]
+
+TASK [Check if Docker registry secret exists] **********************************
+ok: [localhost]
+
+TASK [Create Docker registry secret for ACR] ***********************************
+ok: [localhost]
+
+TASK [Check if Kubernetes deployment exists] ***********************************
+ok: [localhost]
+
+TASK [Apply Kubernetes deployment] *********************************************
+changed: [localhost]
+
+TASK [Update Kubernetes deployment] ********************************************
+skipping: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=11   changed=2    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
+
+
+PLAY [++++++++++ ADD SSH PUBLIC KEY TO AZURE VM ++++++++++] ********************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [Add SSH public key to Azure VM] ******************************************
+ok: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [++++++++++ INSTALL SOFTWARE ON AZURE VM ++++++++++] **********************
+
+TASK [Gathering Facts] *********************************************************
+ok: [20.71.118.68]
+
+TASK [Ensure required packages are installed] **********************************
+changed: [20.71.118.68]
+
+TASK [Install the Azure CLI repository key] ************************************
+ok: [20.71.118.68]
+
+TASK [Add Azure CLI repository] ************************************************
+ok: [20.71.118.68]
+
+TASK [Install Azure CLI] *******************************************************
+changed: [20.71.118.68]
+
+TASK [Install Podman] **********************************************************
+changed: [20.71.118.68]
+
+TASK [Modify registries.conf for unqualified search registries] ****************
+changed: [20.71.118.68]
+
+TASK [Install podman-docker] ***************************************************
+changed: [20.71.118.68]
+
+TASK [Install buildah] *********************************************************
+ok: [20.71.118.68]
+
+TASK [Install skopeo] **********************************************************
+changed: [20.71.118.68]
+
+PLAY RECAP *********************************************************************
+20.71.118.68               : ok=10   changed=6    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [++++++++++ RUN NGINX CONTAINER WITH PODMAN ON AZURE VM ++++++++++] *******
+
+TASK [Gathering Facts] *********************************************************
+ok: [20.71.118.68]
+
+TASK [Login to Azure CLI] ******************************************************
+ok: [20.71.118.68]
+
+TASK [Set Azure subscription] **************************************************
+ok: [20.71.118.68]
+
+TASK [Get ACR login access token] **********************************************
+ok: [20.71.118.68]
+
+TASK [Parse ACR login access token] ********************************************
+ok: [20.71.118.68]
+
+TASK [Log in to Azure Container Registry with Podman using access token] *******
+ok: [20.71.118.68]
+
+TASK [Pull container image from Azure Container Registry] **********************
+changed: [20.71.118.68]
+
+TASK [Run container using Podman with port mapping] ****************************
+changed: [20.71.118.68]
+
+TASK [Check if container nginx is running] *************************************
+ok: [20.71.118.68]
+
+TASK [Set fact if container is running] ****************************************
+ok: [20.71.118.68]
+
+TASK [Debug container running status] ******************************************
+ok: [20.71.118.68] => {
+    "container_running": true
+}
+
+PLAY RECAP *********************************************************************
+20.71.118.68               : ok=11   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [++++++++++ CALCULATE VM PUBLIC IP ++++++++++] ****************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [20.71.118.68]
+
+TASK [Display public IP of VM] *************************************************
+ok: [20.71.118.68] => {
+    "msg": "The public IP of Linux VM is 20.71.118.68"
+}
+
+PLAY RECAP *********************************************************************
+20.71.118.68               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [++++++++++ CALCULATE AKS PUBLIC IP +++++++++] ****************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [Wait for AKS service frontend to be created] *****************************
+ok: [localhost]
+
+TASK [Get the public IP of the AKS service] ************************************
+ok: [localhost]
+
+TASK [Display the public IP of AKS frontend app] *******************************
+ok: [localhost] => {
+    "msg": "The public IP of the AKS service is 20.254.230.162"
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

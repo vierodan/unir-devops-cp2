@@ -1,0 +1,516 @@
+[0m[1mazurerm_resource_group.arg: Refreshing state... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg][0m
+[0m[1mazurerm_availability_set.aas: Refreshing state... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Compute/availabilitySets/avrcp2aas][0m
+[0m[1mazurerm_container_registry.acr: Refreshing state... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.ContainerRegistry/registries/avrcp2acr][0m
+[0m[1mazurerm_kubernetes_cluster.aks: Refreshing state... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.ContainerService/managedClusters/avrcp2aks][0m
+[0m[1mazurerm_virtual_network.avn: Refreshing state... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/virtualNetworks/avrcp2avn][0m
+[0m[1mazurerm_public_ip.apip: Refreshing state... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/publicIPAddresses/avrcp2apip][0m
+[0m[1mazurerm_network_security_group.ansg: Refreshing state... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/networkSecurityGroups/avrcp2ansg][0m
+[0m[1mlocal_file.ansible_inventory: Refreshing state... [id=458acff4e0b9a588ca6aad702cd2c3fd7188098d][0m
+[0m[1mazurerm_subnet.asn: Refreshing state... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/virtualNetworks/avrcp2avn/subnets/avrcp2asn][0m
+[0m[1mazurerm_network_interface.ani: Refreshing state... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/networkInterfaces/avrcp2ani][0m
+[0m[1mazurerm_network_interface_security_group_association.anisga: Refreshing state... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/networkInterfaces/avrcp2ani|/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/networkSecurityGroups/avrcp2ansg][0m
+[0m[1mazurerm_linux_virtual_machine.avml: Refreshing state... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Compute/virtualMachines/avrcp2vml][0m
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [31m-[0m destroy[0m
+
+Terraform will perform the following actions:
+
+[1m  # azurerm_availability_set.aas[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "azurerm_availability_set" "aas" {
+      [31m-[0m[0m id                           = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Compute/availabilitySets/avrcp2aas" [90m-> null[0m[0m
+      [31m-[0m[0m location                     = "westeurope" [90m-> null[0m[0m
+      [31m-[0m[0m managed                      = true [90m-> null[0m[0m
+      [31m-[0m[0m name                         = "avrcp2aas" [90m-> null[0m[0m
+      [31m-[0m[0m platform_fault_domain_count  = 2 [90m-> null[0m[0m
+      [31m-[0m[0m platform_update_domain_count = 2 [90m-> null[0m[0m
+      [31m-[0m[0m resource_group_name          = "avrcp2arg" [90m-> null[0m[0m
+      [31m-[0m[0m tags                         = {
+          [31m-[0m[0m "environment" = "development"
+          [31m-[0m[0m "project"     = "cp2"
+        } [90m-> null[0m[0m
+    }
+
+[1m  # azurerm_container_registry.acr[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "azurerm_container_registry" "acr" {
+      [31m-[0m[0m admin_enabled                 = true [90m-> null[0m[0m
+      [31m-[0m[0m admin_password                = (sensitive value) [90m-> null[0m[0m
+      [31m-[0m[0m admin_username                = "avrcp2acr" [90m-> null[0m[0m
+      [31m-[0m[0m anonymous_pull_enabled        = false [90m-> null[0m[0m
+      [31m-[0m[0m data_endpoint_enabled         = false [90m-> null[0m[0m
+      [31m-[0m[0m encryption                    = [
+          [31m-[0m[0m {
+              [31m-[0m[0m enabled            = false
+                [90m# (2 unchanged attributes hidden)[0m[0m
+            },
+        ] [90m-> null[0m[0m
+      [31m-[0m[0m export_policy_enabled         = true [90m-> null[0m[0m
+      [31m-[0m[0m id                            = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.ContainerRegistry/registries/avrcp2acr" [90m-> null[0m[0m
+      [31m-[0m[0m location                      = "westeurope" [90m-> null[0m[0m
+      [31m-[0m[0m login_server                  = "avrcp2acr.azurecr.io" [90m-> null[0m[0m
+      [31m-[0m[0m name                          = "avrcp2acr" [90m-> null[0m[0m
+      [31m-[0m[0m network_rule_bypass_option    = "AzureServices" [90m-> null[0m[0m
+      [31m-[0m[0m network_rule_set              = [] [90m-> null[0m[0m
+      [31m-[0m[0m public_network_access_enabled = true [90m-> null[0m[0m
+      [31m-[0m[0m quarantine_policy_enabled     = false [90m-> null[0m[0m
+      [31m-[0m[0m resource_group_name           = "avrcp2arg" [90m-> null[0m[0m
+      [31m-[0m[0m retention_policy              = [
+          [31m-[0m[0m {
+              [31m-[0m[0m days    = 7
+              [31m-[0m[0m enabled = false
+            },
+        ] [90m-> null[0m[0m
+      [31m-[0m[0m sku                           = "Basic" [90m-> null[0m[0m
+      [31m-[0m[0m tags                          = {
+          [31m-[0m[0m "environment" = "development"
+          [31m-[0m[0m "project"     = "cp2"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m trust_policy                  = [
+          [31m-[0m[0m {
+              [31m-[0m[0m enabled = false
+            },
+        ] [90m-> null[0m[0m
+      [31m-[0m[0m zone_redundancy_enabled       = false [90m-> null[0m[0m
+    }
+
+[1m  # azurerm_kubernetes_cluster.aks[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "azurerm_kubernetes_cluster" "aks" {
+      [31m-[0m[0m api_server_authorized_ip_ranges     = [] [90m-> null[0m[0m
+      [31m-[0m[0m cost_analysis_enabled               = false [90m-> null[0m[0m
+      [31m-[0m[0m current_kubernetes_version          = "1.28.9" [90m-> null[0m[0m
+      [31m-[0m[0m custom_ca_trust_certificates_base64 = [] [90m-> null[0m[0m
+      [31m-[0m[0m dns_prefix                          = "avrcp2aks" [90m-> null[0m[0m
+      [31m-[0m[0m enable_pod_security_policy          = false [90m-> null[0m[0m
+      [31m-[0m[0m fqdn                                = "avrcp2aks-91ckgxrt.hcp.ukwest.azmk8s.io" [90m-> null[0m[0m
+      [31m-[0m[0m id                                  = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.ContainerService/managedClusters/avrcp2aks" [90m-> null[0m[0m
+      [31m-[0m[0m image_cleaner_enabled               = false [90m-> null[0m[0m
+      [31m-[0m[0m image_cleaner_interval_hours        = 48 [90m-> null[0m[0m
+      [31m-[0m[0m kube_admin_config                   = (sensitive value) [90m-> null[0m[0m
+      [31m-[0m[0m kube_config                         = (sensitive value) [90m-> null[0m[0m
+      [31m-[0m[0m kube_config_raw                     = (sensitive value) [90m-> null[0m[0m
+      [31m-[0m[0m kubernetes_version                  = "1.28.9" [90m-> null[0m[0m
+      [31m-[0m[0m local_account_disabled              = false [90m-> null[0m[0m
+      [31m-[0m[0m location                            = "ukwest" [90m-> null[0m[0m
+      [31m-[0m[0m name                                = "avrcp2aks" [90m-> null[0m[0m
+      [31m-[0m[0m node_resource_group                 = "MC_avrcp2arg_avrcp2aks_ukwest" [90m-> null[0m[0m
+      [31m-[0m[0m node_resource_group_id              = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/MC_avrcp2arg_avrcp2aks_ukwest" [90m-> null[0m[0m
+      [31m-[0m[0m oidc_issuer_enabled                 = false [90m-> null[0m[0m
+      [31m-[0m[0m portal_fqdn                         = "avrcp2aks-91ckgxrt.portal.hcp.ukwest.azmk8s.io" [90m-> null[0m[0m
+      [31m-[0m[0m private_cluster_enabled             = false [90m-> null[0m[0m
+      [31m-[0m[0m private_cluster_public_fqdn_enabled = false [90m-> null[0m[0m
+      [31m-[0m[0m public_network_access_enabled       = true [90m-> null[0m[0m
+      [31m-[0m[0m resource_group_name                 = "avrcp2arg" [90m-> null[0m[0m
+      [31m-[0m[0m role_based_access_control_enabled   = true [90m-> null[0m[0m
+      [31m-[0m[0m run_command_enabled                 = true [90m-> null[0m[0m
+      [31m-[0m[0m sku_tier                            = "Free" [90m-> null[0m[0m
+      [31m-[0m[0m support_plan                        = "KubernetesOfficial" [90m-> null[0m[0m
+      [31m-[0m[0m tags                                = {
+          [31m-[0m[0m "environment" = "development"
+          [31m-[0m[0m "project"     = "cp2"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m workload_identity_enabled           = false [90m-> null[0m[0m
+        [90m# (7 unchanged attributes hidden)[0m[0m
+
+      [31m-[0m[0m default_node_pool {
+          [31m-[0m[0m custom_ca_trust_enabled       = false [90m-> null[0m[0m
+          [31m-[0m[0m enable_auto_scaling           = false [90m-> null[0m[0m
+          [31m-[0m[0m enable_host_encryption        = false [90m-> null[0m[0m
+          [31m-[0m[0m enable_node_public_ip         = false [90m-> null[0m[0m
+          [31m-[0m[0m fips_enabled                  = false [90m-> null[0m[0m
+          [31m-[0m[0m kubelet_disk_type             = "OS" [90m-> null[0m[0m
+          [31m-[0m[0m max_count                     = 0 [90m-> null[0m[0m
+          [31m-[0m[0m max_pods                      = 30 [90m-> null[0m[0m
+          [31m-[0m[0m min_count                     = 0 [90m-> null[0m[0m
+          [31m-[0m[0m name                          = "default" [90m-> null[0m[0m
+          [31m-[0m[0m node_count                    = 1 [90m-> null[0m[0m
+          [31m-[0m[0m node_labels                   = {} [90m-> null[0m[0m
+          [31m-[0m[0m node_taints                   = [] [90m-> null[0m[0m
+          [31m-[0m[0m only_critical_addons_enabled  = false [90m-> null[0m[0m
+          [31m-[0m[0m orchestrator_version          = "1.28.9" [90m-> null[0m[0m
+          [31m-[0m[0m os_disk_size_gb               = 128 [90m-> null[0m[0m
+          [31m-[0m[0m os_disk_type                  = "Managed" [90m-> null[0m[0m
+          [31m-[0m[0m os_sku                        = "Ubuntu" [90m-> null[0m[0m
+          [31m-[0m[0m scale_down_mode               = "Delete" [90m-> null[0m[0m
+          [31m-[0m[0m tags                          = {} [90m-> null[0m[0m
+          [31m-[0m[0m type                          = "VirtualMachineScaleSets" [90m-> null[0m[0m
+          [31m-[0m[0m ultra_ssd_enabled             = false [90m-> null[0m[0m
+          [31m-[0m[0m vm_size                       = "Standard_B2s" [90m-> null[0m[0m
+          [31m-[0m[0m zones                         = [] [90m-> null[0m[0m
+            [90m# (11 unchanged attributes hidden)[0m[0m
+
+          [31m-[0m[0m upgrade_settings {
+              [31m-[0m[0m drain_timeout_in_minutes      = 0 [90m-> null[0m[0m
+              [31m-[0m[0m max_surge                     = "10%" [90m-> null[0m[0m
+              [31m-[0m[0m node_soak_duration_in_minutes = 0 [90m-> null[0m[0m
+            }
+        }
+
+      [31m-[0m[0m identity {
+          [31m-[0m[0m identity_ids = [] [90m-> null[0m[0m
+          [31m-[0m[0m principal_id = "90d5b2bb-7c39-494f-accd-04910c71fd6f" [90m-> null[0m[0m
+          [31m-[0m[0m tenant_id    = "f6b9e093-588a-4494-8dc1-9acd9854ad9d" [90m-> null[0m[0m
+          [31m-[0m[0m type         = "SystemAssigned" [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m kubelet_identity {
+          [31m-[0m[0m client_id                 = "60c7ba7b-b19e-4e95-891a-6e01797bcbdf" [90m-> null[0m[0m
+          [31m-[0m[0m object_id                 = "778fa580-0bee-42e5-94bb-7e7a5b2da21a" [90m-> null[0m[0m
+          [31m-[0m[0m user_assigned_identity_id = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/MC_avrcp2arg_avrcp2aks_ukwest/providers/Microsoft.ManagedIdentity/userAssignedIdentities/avrcp2aks-agentpool" [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m network_profile {
+          [31m-[0m[0m dns_service_ip          = "10.0.0.10" [90m-> null[0m[0m
+          [31m-[0m[0m ip_versions             = [
+              [31m-[0m[0m "IPv4",
+            ] [90m-> null[0m[0m
+          [31m-[0m[0m load_balancer_sku       = "basic" [90m-> null[0m[0m
+          [31m-[0m[0m network_data_plane      = "azure" [90m-> null[0m[0m
+          [31m-[0m[0m network_plugin          = "azure" [90m-> null[0m[0m
+          [31m-[0m[0m outbound_ip_address_ids = [] [90m-> null[0m[0m
+          [31m-[0m[0m outbound_ip_prefix_ids  = [] [90m-> null[0m[0m
+          [31m-[0m[0m outbound_type           = "loadBalancer" [90m-> null[0m[0m
+          [31m-[0m[0m pod_cidrs               = [] [90m-> null[0m[0m
+          [31m-[0m[0m service_cidr            = "10.0.0.0/16" [90m-> null[0m[0m
+          [31m-[0m[0m service_cidrs           = [
+              [31m-[0m[0m "10.0.0.0/16",
+            ] [90m-> null[0m[0m
+            [90m# (6 unchanged attributes hidden)[0m[0m
+        }
+
+      [31m-[0m[0m windows_profile {
+          [31m-[0m[0m admin_username = "azureuser" [90m-> null[0m[0m
+            [90m# (2 unchanged attributes hidden)[0m[0m
+        }
+    }
+
+[1m  # azurerm_linux_virtual_machine.avml[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "azurerm_linux_virtual_machine" "avml" {
+      [31m-[0m[0m admin_password                                         = (sensitive value) [90m-> null[0m[0m
+      [31m-[0m[0m admin_username                                         = "adminuser" [90m-> null[0m[0m
+      [31m-[0m[0m allow_extension_operations                             = true [90m-> null[0m[0m
+      [31m-[0m[0m availability_set_id                                    = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Compute/availabilitySets/AVRCP2AAS" [90m-> null[0m[0m
+      [31m-[0m[0m bypass_platform_safety_checks_on_user_schedule_enabled = false [90m-> null[0m[0m
+      [31m-[0m[0m computer_name                                          = "ubuntu22linuxvm" [90m-> null[0m[0m
+      [31m-[0m[0m disable_password_authentication                        = false [90m-> null[0m[0m
+      [31m-[0m[0m disk_controller_type                                   = "SCSI" [90m-> null[0m[0m
+      [31m-[0m[0m encryption_at_host_enabled                             = false [90m-> null[0m[0m
+      [31m-[0m[0m extensions_time_budget                                 = "PT1H30M" [90m-> null[0m[0m
+      [31m-[0m[0m id                                                     = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Compute/virtualMachines/avrcp2vml" [90m-> null[0m[0m
+      [31m-[0m[0m location                                               = "westeurope" [90m-> null[0m[0m
+      [31m-[0m[0m max_bid_price                                          = -1 [90m-> null[0m[0m
+      [31m-[0m[0m name                                                   = "avrcp2vml" [90m-> null[0m[0m
+      [31m-[0m[0m network_interface_ids                                  = [
+          [31m-[0m[0m "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/networkInterfaces/avrcp2ani",
+        ] [90m-> null[0m[0m
+      [31m-[0m[0m patch_assessment_mode                                  = "ImageDefault" [90m-> null[0m[0m
+      [31m-[0m[0m patch_mode                                             = "ImageDefault" [90m-> null[0m[0m
+      [31m-[0m[0m platform_fault_domain                                  = -1 [90m-> null[0m[0m
+      [31m-[0m[0m priority                                               = "Regular" [90m-> null[0m[0m
+      [31m-[0m[0m private_ip_address                                     = "10.0.1.4" [90m-> null[0m[0m
+      [31m-[0m[0m private_ip_addresses                                   = [
+          [31m-[0m[0m "10.0.1.4",
+        ] [90m-> null[0m[0m
+      [31m-[0m[0m provision_vm_agent                                     = true [90m-> null[0m[0m
+      [31m-[0m[0m public_ip_address                                      = "20.71.118.68" [90m-> null[0m[0m
+      [31m-[0m[0m public_ip_addresses                                    = [
+          [31m-[0m[0m "20.71.118.68",
+        ] [90m-> null[0m[0m
+      [31m-[0m[0m resource_group_name                                    = "avrcp2arg" [90m-> null[0m[0m
+      [31m-[0m[0m secure_boot_enabled                                    = false [90m-> null[0m[0m
+      [31m-[0m[0m size                                                   = "Standard_B1s" [90m-> null[0m[0m
+      [31m-[0m[0m tags                                                   = {
+          [31m-[0m[0m "environment" = "development"
+          [31m-[0m[0m "project"     = "cp2"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m virtual_machine_id                                     = "05df70d7-4598-418c-97a5-a4b51d92d131" [90m-> null[0m[0m
+      [31m-[0m[0m vm_agent_platform_updates_enabled                      = false [90m-> null[0m[0m
+      [31m-[0m[0m vtpm_enabled                                           = false [90m-> null[0m[0m
+        [90m# (12 unchanged attributes hidden)[0m[0m
+
+      [31m-[0m[0m os_disk {
+          [31m-[0m[0m caching                          = "ReadWrite" [90m-> null[0m[0m
+          [31m-[0m[0m disk_size_gb                     = 30 [90m-> null[0m[0m
+          [31m-[0m[0m name                             = "linux-os-disk" [90m-> null[0m[0m
+          [31m-[0m[0m storage_account_type             = "Standard_LRS" [90m-> null[0m[0m
+          [31m-[0m[0m write_accelerator_enabled        = false [90m-> null[0m[0m
+            [90m# (3 unchanged attributes hidden)[0m[0m
+        }
+
+      [31m-[0m[0m source_image_reference {
+          [31m-[0m[0m offer     = "0001-com-ubuntu-server-jammy" [90m-> null[0m[0m
+          [31m-[0m[0m publisher = "Canonical" [90m-> null[0m[0m
+          [31m-[0m[0m sku       = "22_04-lts-gen2" [90m-> null[0m[0m
+          [31m-[0m[0m version   = "latest" [90m-> null[0m[0m
+        }
+    }
+
+[1m  # azurerm_network_interface.ani[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "azurerm_network_interface" "ani" {
+      [31m-[0m[0m accelerated_networking_enabled = false [90m-> null[0m[0m
+      [31m-[0m[0m applied_dns_servers            = [] [90m-> null[0m[0m
+      [31m-[0m[0m dns_servers                    = [] [90m-> null[0m[0m
+      [31m-[0m[0m enable_accelerated_networking  = false [90m-> null[0m[0m
+      [31m-[0m[0m enable_ip_forwarding           = false [90m-> null[0m[0m
+      [31m-[0m[0m id                             = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/networkInterfaces/avrcp2ani" [90m-> null[0m[0m
+      [31m-[0m[0m internal_domain_name_suffix    = "zybhvluoebuelb3onxl5swnpze.ax.internal.cloudapp.net" [90m-> null[0m[0m
+      [31m-[0m[0m ip_forwarding_enabled          = false [90m-> null[0m[0m
+      [31m-[0m[0m location                       = "westeurope" [90m-> null[0m[0m
+      [31m-[0m[0m mac_address                    = "60-45-BD-A1-66-B3" [90m-> null[0m[0m
+      [31m-[0m[0m name                           = "avrcp2ani" [90m-> null[0m[0m
+      [31m-[0m[0m private_ip_address             = "10.0.1.4" [90m-> null[0m[0m
+      [31m-[0m[0m private_ip_addresses           = [
+          [31m-[0m[0m "10.0.1.4",
+        ] [90m-> null[0m[0m
+      [31m-[0m[0m resource_group_name            = "avrcp2arg" [90m-> null[0m[0m
+      [31m-[0m[0m tags                           = {
+          [31m-[0m[0m "environment" = "development"
+          [31m-[0m[0m "project"     = "cp2"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m virtual_machine_id             = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Compute/virtualMachines/avrcp2vml" [90m-> null[0m[0m
+        [90m# (4 unchanged attributes hidden)[0m[0m
+
+      [31m-[0m[0m ip_configuration {
+          [31m-[0m[0m name                                               = "internal" [90m-> null[0m[0m
+          [31m-[0m[0m primary                                            = true [90m-> null[0m[0m
+          [31m-[0m[0m private_ip_address                                 = "10.0.1.4" [90m-> null[0m[0m
+          [31m-[0m[0m private_ip_address_allocation                      = "Dynamic" [90m-> null[0m[0m
+          [31m-[0m[0m private_ip_address_version                         = "IPv4" [90m-> null[0m[0m
+          [31m-[0m[0m public_ip_address_id                               = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/publicIPAddresses/avrcp2apip" [90m-> null[0m[0m
+          [31m-[0m[0m subnet_id                                          = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/virtualNetworks/avrcp2avn/subnets/avrcp2asn" [90m-> null[0m[0m
+            [90m# (1 unchanged attribute hidden)[0m[0m
+        }
+    }
+
+[1m  # azurerm_network_interface_security_group_association.anisga[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "azurerm_network_interface_security_group_association" "anisga" {
+      [31m-[0m[0m id                        = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/networkInterfaces/avrcp2ani|/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/networkSecurityGroups/avrcp2ansg" [90m-> null[0m[0m
+      [31m-[0m[0m network_interface_id      = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/networkInterfaces/avrcp2ani" [90m-> null[0m[0m
+      [31m-[0m[0m network_security_group_id = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/networkSecurityGroups/avrcp2ansg" [90m-> null[0m[0m
+    }
+
+[1m  # azurerm_network_security_group.ansg[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "azurerm_network_security_group" "ansg" {
+      [31m-[0m[0m id                  = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/networkSecurityGroups/avrcp2ansg" [90m-> null[0m[0m
+      [31m-[0m[0m location            = "westeurope" [90m-> null[0m[0m
+      [31m-[0m[0m name                = "avrcp2ansg" [90m-> null[0m[0m
+      [31m-[0m[0m resource_group_name = "avrcp2arg" [90m-> null[0m[0m
+      [31m-[0m[0m security_rule       = [
+          [31m-[0m[0m {
+              [31m-[0m[0m access                                     = "Allow"
+              [31m-[0m[0m destination_address_prefix                 = "*"
+              [31m-[0m[0m destination_address_prefixes               = []
+              [31m-[0m[0m destination_application_security_group_ids = []
+              [31m-[0m[0m destination_port_range                     = "22"
+              [31m-[0m[0m destination_port_ranges                    = []
+              [31m-[0m[0m direction                                  = "Inbound"
+              [31m-[0m[0m name                                       = "SSH"
+              [31m-[0m[0m priority                                   = 1001
+              [31m-[0m[0m protocol                                   = "Tcp"
+              [31m-[0m[0m source_address_prefix                      = "*"
+              [31m-[0m[0m source_address_prefixes                    = []
+              [31m-[0m[0m source_application_security_group_ids      = []
+              [31m-[0m[0m source_port_range                          = "*"
+              [31m-[0m[0m source_port_ranges                         = []
+                [90m# (1 unchanged attribute hidden)[0m[0m
+            },
+          [31m-[0m[0m {
+              [31m-[0m[0m access                                     = "Allow"
+              [31m-[0m[0m destination_address_prefix                 = "*"
+              [31m-[0m[0m destination_address_prefixes               = []
+              [31m-[0m[0m destination_application_security_group_ids = []
+              [31m-[0m[0m destination_port_range                     = "80"
+              [31m-[0m[0m destination_port_ranges                    = []
+              [31m-[0m[0m direction                                  = "Inbound"
+              [31m-[0m[0m name                                       = "HTTP"
+              [31m-[0m[0m priority                                   = 1002
+              [31m-[0m[0m protocol                                   = "Tcp"
+              [31m-[0m[0m source_address_prefix                      = "*"
+              [31m-[0m[0m source_address_prefixes                    = []
+              [31m-[0m[0m source_application_security_group_ids      = []
+              [31m-[0m[0m source_port_range                          = "*"
+              [31m-[0m[0m source_port_ranges                         = []
+                [90m# (1 unchanged attribute hidden)[0m[0m
+            },
+        ] [90m-> null[0m[0m
+      [31m-[0m[0m tags                = {
+          [31m-[0m[0m "environment" = "development"
+          [31m-[0m[0m "project"     = "cp2"
+        } [90m-> null[0m[0m
+    }
+
+[1m  # azurerm_public_ip.apip[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "azurerm_public_ip" "apip" {
+      [31m-[0m[0m allocation_method       = "Static" [90m-> null[0m[0m
+      [31m-[0m[0m ddos_protection_mode    = "VirtualNetworkInherited" [90m-> null[0m[0m
+      [31m-[0m[0m id                      = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/publicIPAddresses/avrcp2apip" [90m-> null[0m[0m
+      [31m-[0m[0m idle_timeout_in_minutes = 4 [90m-> null[0m[0m
+      [31m-[0m[0m ip_address              = "20.71.118.68" [90m-> null[0m[0m
+      [31m-[0m[0m ip_tags                 = {} [90m-> null[0m[0m
+      [31m-[0m[0m ip_version              = "IPv4" [90m-> null[0m[0m
+      [31m-[0m[0m location                = "westeurope" [90m-> null[0m[0m
+      [31m-[0m[0m name                    = "avrcp2apip" [90m-> null[0m[0m
+      [31m-[0m[0m resource_group_name     = "avrcp2arg" [90m-> null[0m[0m
+      [31m-[0m[0m sku                     = "Basic" [90m-> null[0m[0m
+      [31m-[0m[0m sku_tier                = "Regional" [90m-> null[0m[0m
+      [31m-[0m[0m tags                    = {
+          [31m-[0m[0m "environment" = "development"
+          [31m-[0m[0m "project"     = "cp2"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m zones                   = [] [90m-> null[0m[0m
+        [90m# (1 unchanged attribute hidden)[0m[0m
+    }
+
+[1m  # azurerm_resource_group.arg[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "azurerm_resource_group" "arg" {
+      [31m-[0m[0m id         = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg" [90m-> null[0m[0m
+      [31m-[0m[0m location   = "westeurope" [90m-> null[0m[0m
+      [31m-[0m[0m name       = "avrcp2arg" [90m-> null[0m[0m
+      [31m-[0m[0m tags       = {
+          [31m-[0m[0m "environment" = "development"
+          [31m-[0m[0m "project"     = "cp2"
+        } [90m-> null[0m[0m
+        [90m# (1 unchanged attribute hidden)[0m[0m
+    }
+
+[1m  # azurerm_subnet.asn[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "azurerm_subnet" "asn" {
+      [31m-[0m[0m address_prefixes                               = [
+          [31m-[0m[0m "10.0.1.0/24",
+        ] [90m-> null[0m[0m
+      [31m-[0m[0m default_outbound_access_enabled                = true [90m-> null[0m[0m
+      [31m-[0m[0m enforce_private_link_endpoint_network_policies = false [90m-> null[0m[0m
+      [31m-[0m[0m enforce_private_link_service_network_policies  = false [90m-> null[0m[0m
+      [31m-[0m[0m id                                             = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/virtualNetworks/avrcp2avn/subnets/avrcp2asn" [90m-> null[0m[0m
+      [31m-[0m[0m name                                           = "avrcp2asn" [90m-> null[0m[0m
+      [31m-[0m[0m private_endpoint_network_policies              = "Enabled" [90m-> null[0m[0m
+      [31m-[0m[0m private_endpoint_network_policies_enabled      = true [90m-> null[0m[0m
+      [31m-[0m[0m private_link_service_network_policies_enabled  = true [90m-> null[0m[0m
+      [31m-[0m[0m resource_group_name                            = "avrcp2arg" [90m-> null[0m[0m
+      [31m-[0m[0m service_endpoint_policy_ids                    = [] [90m-> null[0m[0m
+      [31m-[0m[0m service_endpoints                              = [] [90m-> null[0m[0m
+      [31m-[0m[0m virtual_network_name                           = "avrcp2avn" [90m-> null[0m[0m
+    }
+
+[1m  # azurerm_virtual_network.avn[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "azurerm_virtual_network" "avn" {
+      [31m-[0m[0m address_space           = [
+          [31m-[0m[0m "10.0.0.0/16",
+        ] [90m-> null[0m[0m
+      [31m-[0m[0m dns_servers             = [] [90m-> null[0m[0m
+      [31m-[0m[0m flow_timeout_in_minutes = 0 [90m-> null[0m[0m
+      [31m-[0m[0m guid                    = "ae7a02ce-208e-4568-87ae-6dd7f959afcc" [90m-> null[0m[0m
+      [31m-[0m[0m id                      = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/virtualNetworks/avrcp2avn" [90m-> null[0m[0m
+      [31m-[0m[0m location                = "westeurope" [90m-> null[0m[0m
+      [31m-[0m[0m name                    = "avrcp2avn" [90m-> null[0m[0m
+      [31m-[0m[0m resource_group_name     = "avrcp2arg" [90m-> null[0m[0m
+      [31m-[0m[0m subnet                  = [
+          [31m-[0m[0m {
+              [31m-[0m[0m address_prefix = "10.0.1.0/24"
+              [31m-[0m[0m id             = "/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/virtualNetworks/avrcp2avn/subnets/avrcp2asn"
+              [31m-[0m[0m name           = "avrcp2asn"
+                [90m# (1 unchanged attribute hidden)[0m[0m
+            },
+        ] [90m-> null[0m[0m
+      [31m-[0m[0m tags                    = {
+          [31m-[0m[0m "environment" = "development"
+          [31m-[0m[0m "project"     = "cp2"
+        } [90m-> null[0m[0m
+        [90m# (2 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # local_file.ansible_inventory[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "local_file" "ansible_inventory" {
+      [31m-[0m[0m content              = <<-EOT
+            [webserver]
+            20.71.118.68 ansible_user=adminuser ansible_ssh_private_key_file=~/.ssh/id_rsa_azure ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+        EOT [90m-> null[0m[0m
+      [31m-[0m[0m content_base64sha256 = "L3rRxwN+DEDTG+BOvOHFe0XP8h3yccwLqBqnfJEhk7U=" [90m-> null[0m[0m
+      [31m-[0m[0m content_base64sha512 = "EX7SsLfGBE0Oi64V57Tv/X3GfHZile2WUdL+cR0tUDZrMcg12wIOQ295BiAwx5DV+qKFJjoN6bv4uv20wlkJpg==" [90m-> null[0m[0m
+      [31m-[0m[0m content_md5          = "692d953704b140c3a129a4cc3d2ea44c" [90m-> null[0m[0m
+      [31m-[0m[0m content_sha1         = "458acff4e0b9a588ca6aad702cd2c3fd7188098d" [90m-> null[0m[0m
+      [31m-[0m[0m content_sha256       = "2f7ad1c7037e0c40d31be04ebce1c57b45cff21df271cc0ba81aa77c912193b5" [90m-> null[0m[0m
+      [31m-[0m[0m content_sha512       = "117ed2b0b7c6044d0e8bae15e7b4effd7dc67c766295ed9651d2fe711d2d50366b31c835db020e436f79062030c790d5faa285263a0de9bbf8bafdb4c25909a6" [90m-> null[0m[0m
+      [31m-[0m[0m directory_permission = "0777" [90m-> null[0m[0m
+      [31m-[0m[0m file_permission      = "0777" [90m-> null[0m[0m
+      [31m-[0m[0m filename             = "../ansible/ansible_inventory_vm.ini" [90m-> null[0m[0m
+      [31m-[0m[0m id                   = "458acff4e0b9a588ca6aad702cd2c3fd7188098d" [90m-> null[0m[0m
+    }
+
+[1mPlan:[0m 0 to add, 0 to change, 12 to destroy.
+[0m
+Changes to Outputs:
+  [31m-[0m[0m admin_username             = "adminuser" [90m-> null[0m[0m
+  [31m-[0m[0m azurerm_acr_admin_password = (sensitive value) [90m-> null[0m[0m
+  [31m-[0m[0m azurerm_acr_admin_username = "avrcp2acr" [90m-> null[0m[0m
+  [31m-[0m[0m azurerm_acr_login_server   = "avrcp2acr.azurecr.io" [90m-> null[0m[0m
+  [31m-[0m[0m kube_config                = (sensitive value) [90m-> null[0m[0m
+  [31m-[0m[0m resource_group_name        = "avrcp2arg" [90m-> null[0m[0m
+  [31m-[0m[0m virtual_machine_public_ip  = "20.71.118.68" [90m-> null[0m[0m
+[0m[1mlocal_file.ansible_inventory: Destroying... [id=458acff4e0b9a588ca6aad702cd2c3fd7188098d][0m[0m
+[0m[1mlocal_file.ansible_inventory: Destruction complete after 0s[0m
+[0m[1mazurerm_network_interface_security_group_association.anisga: Destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/networkInterfaces/avrcp2ani|/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/networkSecurityGroups/avrcp2ansg][0m[0m
+[0m[1mazurerm_container_registry.acr: Destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.ContainerRegistry/registries/avrcp2acr][0m[0m
+[0m[1mazurerm_linux_virtual_machine.avml: Destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Compute/virtualMachines/avrcp2vml][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.ContainerService/managedClusters/avrcp2aks][0m[0m
+[0m[1mazurerm_network_interface_security_group_association.anisga: Destruction complete after 7s[0m
+[0m[1mazurerm_network_security_group.ansg: Destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/networkSecurityGroups/avrcp2ansg][0m[0m
+[0m[1mazurerm_container_registry.acr: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ContainerRegistry/registries/avrcp2acr, 10s elapsed][0m[0m
+[0m[1mazurerm_linux_virtual_machine.avml: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...soft.Compute/virtualMachines/avrcp2vml, 10s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 10s elapsed][0m[0m
+[0m[1mazurerm_container_registry.acr: Destruction complete after 16s[0m
+[0m[1mazurerm_network_security_group.ansg: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...twork/networkSecurityGroups/avrcp2ansg, 10s elapsed][0m[0m
+[0m[1mazurerm_network_security_group.ansg: Destruction complete after 11s[0m
+[0m[1mazurerm_linux_virtual_machine.avml: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...soft.Compute/virtualMachines/avrcp2vml, 20s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 20s elapsed][0m[0m
+[0m[1mazurerm_linux_virtual_machine.avml: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...soft.Compute/virtualMachines/avrcp2vml, 30s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 30s elapsed][0m[0m
+[0m[1mazurerm_linux_virtual_machine.avml: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...soft.Compute/virtualMachines/avrcp2vml, 40s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 40s elapsed][0m[0m
+[0m[1mazurerm_linux_virtual_machine.avml: Destruction complete after 42s[0m
+[0m[1mazurerm_network_interface.ani: Destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/networkInterfaces/avrcp2ani][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 50s elapsed][0m[0m
+[0m[1mazurerm_network_interface.ani: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ft.Network/networkInterfaces/avrcp2ani, 10s elapsed][0m[0m
+[0m[1mazurerm_network_interface.ani: Destruction complete after 12s[0m
+[0m[1mazurerm_subnet.asn: Destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/virtualNetworks/avrcp2avn/subnets/avrcp2asn][0m[0m
+[0m[1mazurerm_public_ip.apip: Destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/publicIPAddresses/avrcp2apip][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 1m0s elapsed][0m[0m
+[0m[1mazurerm_public_ip.apip: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...t.Network/publicIPAddresses/avrcp2apip, 10s elapsed][0m[0m
+[0m[1mazurerm_subnet.asn: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...alNetworks/avrcp2avn/subnets/avrcp2asn, 10s elapsed][0m[0m
+[0m[1mazurerm_public_ip.apip: Destruction complete after 10s[0m
+[0m[1mazurerm_subnet.asn: Destruction complete after 11s[0m
+[0m[1mazurerm_virtual_network.avn: Destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Network/virtualNetworks/avrcp2avn][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 1m10s elapsed][0m[0m
+[0m[1mazurerm_virtual_network.avn: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...soft.Network/virtualNetworks/avrcp2avn, 10s elapsed][0m[0m
+[0m[1mazurerm_virtual_network.avn: Destruction complete after 10s[0m
+[0m[1mazurerm_availability_set.aas: Destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg/providers/Microsoft.Compute/availabilitySets/avrcp2aas][0m[0m
+[0m[1mazurerm_availability_set.aas: Destruction complete after 3s[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 1m20s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 1m30s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 1m40s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 1m50s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 2m0s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 2m10s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 2m20s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 2m30s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 2m40s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 2m50s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 3m0s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 3m10s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 3m20s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 3m30s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 3m40s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 3m50s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 4m0s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-...ainerService/managedClusters/avrcp2aks, 4m10s elapsed][0m[0m
+[0m[1mazurerm_kubernetes_cluster.aks: Destruction complete after 4m10s[0m
+[0m[1mazurerm_resource_group.arg: Destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg][0m[0m
+[0m[1mazurerm_resource_group.arg: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg, 10s elapsed][0m[0m
+[0m[1mazurerm_resource_group.arg: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg, 20s elapsed][0m[0m
+[0m[1mazurerm_resource_group.arg: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg, 30s elapsed][0m[0m
+[0m[1mazurerm_resource_group.arg: Still destroying... [id=/subscriptions/f6b56941-1420-47bf-9908-dd7e5582008e/resourceGroups/avrcp2arg, 40s elapsed][0m[0m
+[0m[1mazurerm_resource_group.arg: Destruction complete after 47s[0m
+[0m[1m[32m
+Destroy complete! Resources: 12 destroyed.
+[0mDeleting resource group: NetworkWatcherRG
+Specified resource groups have been scheduled for deletion.
